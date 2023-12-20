@@ -19,5 +19,8 @@ public class GlobalConstant {
     private final String adminPageURL = "https://admin-demo.nopcommerce.com/";
     private final String userPageURL = "https://demo.nopcommerce.com/";
     private final String projectPath = System.getProperty("user.dir");
-
+    private final String osName = System.getProperty("os.name");
+    private final String javaVersion = System.getProperty("java.version");
+    private final String stagingPageURL = "https://staging.nopcommerce.com/";
+    private final String productionPageURL = "https://production.nopcommerce.com/";
 }
