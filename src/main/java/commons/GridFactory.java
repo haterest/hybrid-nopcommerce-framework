@@ -1,5 +1,6 @@
 package commons;
 
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
@@ -26,9 +27,9 @@ public class GridFactory {
     }
 
     public WebDriver createDriver() {
-        DesiredCapabilities capability = null;
+        DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
+        Capabilities capability;
         Platform platform;
-
         if (osName.contains("windows")) {
             platform = Platform.WINDOWS;
         } else {
@@ -36,27 +37,25 @@ public class GridFactory {
         }
         switch (browserName) {
             case "firefox":
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.setCapability("browserName", "Firefox");
-                firefoxOptions.setPlatformName(platform.toString());
+                capability = new FirefoxOptions();
+                desiredCapabilities.setCapability("browserName","Firefox");
+                capability.merge(desiredCapabilities);
                 break;
             case "chrome":
-                MutableCapabilities capabilities = new MutableCapabilities();
-                ChromeOptions chromeOptions = new ChromeOptions();
-                capabilities.setCapability(ChromeOptions.CAPABILITY, chromeOptions);
-                capabilities.setCapability("browserName", "Chrome");
-                chromeOptions.setPlatformName(platform.toString());
-                chromeOptions.merge(capabilities);
+                MutableCapabilities multableCapabilities = new MutableCapabilities();
+                capability = new ChromeOptions();
+                multableCapabilities.setCapability(ChromeOptions.CAPABILITY, capability);
+                multableCapabilities.setCapability("browserName", "Chrome");
+                capability.merge(multableCapabilities);
                 break;
             case "edge":
-                EdgeOptions eOptions = new EdgeOptions();
-                eOptions.setCapability("browserName","Edge");
-                eOptions.setPlatformName(platform.toString());
+                capability = new EdgeOptions();
+                desiredCapabilities.setCapability("browserName","Edge");
+                capability.merge(desiredCapabilities);
                 break;
             default:
                 throw new RuntimeException("Browser is not valid!");
         }
-
         try {
             driver = new RemoteWebDriver(new URL(String.format("http://%s:%s/wd/hub", ipAddress, portNumber)), capability);
             // waiting for fixing
