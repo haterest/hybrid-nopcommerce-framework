@@ -49,4 +49,8 @@ public class DataHelper {
     public String getPassword() {
         return faker.internet().password(6, 12, true, true);
     }
+
+    public String getInvalidPassword() {
+        return faker.internet().password(1, 4, true, true);
+    }
 }
