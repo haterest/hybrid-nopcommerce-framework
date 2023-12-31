@@ -15,5 +15,6 @@ public class ElementData {
     }
     public static class CommonPage {
         public static final String REGISTER_MENU_LINK_ID = "Register";
+        public static final String LOGIN_MENU_LINK_ID = "Log in";
     }
 }

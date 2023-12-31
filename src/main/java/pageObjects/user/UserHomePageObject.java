@@ -2,6 +2,7 @@ package pageObjects.user;
 
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
+import pageUIs.user.UserHomePageUI;
 
 public class UserHomePageObject extends BasePage {
     WebDriver driver;
@@ -10,4 +11,8 @@ public class UserHomePageObject extends BasePage {
         this.driver = driver;
     }
 
+    public boolean isMyAccountLinkDisplayed() {
+        waitForElementVisible(UserHomePageUI.MY_ACCOUNT_LINK_MENU);
+        return isElementDisplayed(UserHomePageUI.MY_ACCOUNT_LINK_MENU);
+    }
 }
