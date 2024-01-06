@@ -1,7 +1,6 @@
 package com.nopcommerce.user;
 
 import commons.BaseTest;
-import commons.CommonPageObject;
 import commons.CommonRegisterLogin;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
@@ -20,12 +19,12 @@ public class User_02_Login extends BaseTest {
         dataFaker = DataHelper.getData();
         registedEmailAddress = CommonRegisterLogin.emailAddress;
         registedPassword = CommonRegisterLogin.password;
-        commonPage = PageGeneratorManager.getCommonPage(driver);
+        userHomePage = PageGeneratorManager.getUserHomePage(driver);
     }
 
     @Test
     public void Login_01_Empty_Data() {
-        commonPage.clickToMenuLinkByName(ElementData.CommonPage.LOGIN_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName(ElementData.BasePage.LOGIN_MENU_LINK_ID);
         userLoginPage = PageGeneratorManager.getUserLoginPage(driver);
         userLoginPage.clickToLoginButton();
         verifyEquals(userLoginPage.getEmailErrorMessage(),"Please enter your email");
@@ -33,7 +32,7 @@ public class User_02_Login extends BaseTest {
 
     @Test
     public void Login_02_Invalid_Email() {
-        commonPage.clickToMenuLinkByName(ElementData.CommonPage.LOGIN_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName(ElementData.BasePage.LOGIN_MENU_LINK_ID);
         userLoginPage = PageGeneratorManager.getUserLoginPage(driver);
         userLoginPage.inputToEmailTextbox(dataFaker.getFullName());
         userLoginPage.inputToPasswordTextbox(dataFaker.getPassword());
@@ -43,37 +42,37 @@ public class User_02_Login extends BaseTest {
 
     @Test
     public void Login_03_Unregisted_Email() {
-        commonPage.clickToMenuLinkByName(ElementData.CommonPage.LOGIN_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName(ElementData.BasePage.LOGIN_MENU_LINK_ID);
         userLoginPage = PageGeneratorManager.getUserLoginPage(driver);
         userLoginPage.inputToEmailTextbox(dataFaker.getEmail());
         userLoginPage.inputToPasswordTextbox(dataFaker.getPassword());
         userLoginPage.clickToLoginButton();
-        verifyEquals(userLoginPage.getAccountErrorMessage(), "Login was unsuccessful. Please correct the errors and try again./nNo customer account found");
+        verifyEquals(userLoginPage.getAccountErrorMessage(), "Login was unsuccessful. Please correct the errors and try again.\nNo customer account found");
     }
 
     @Test
     public void Login_04_Registed_Email_With_Not_Input_Password() {
-        commonPage.clickToMenuLinkByName(ElementData.CommonPage.LOGIN_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName(ElementData.BasePage.LOGIN_MENU_LINK_ID);
         userLoginPage = PageGeneratorManager.getUserLoginPage(driver);
         userLoginPage.inputToEmailTextbox(registedEmailAddress);
         userLoginPage.inputToPasswordTextbox("");
         userLoginPage.clickToLoginButton();
-        verifyEquals(userLoginPage.getAccountErrorMessage(), "Login was unsuccessful. Please correct the errors and try again./nThe credentials provided are incorrect");
+        verifyEquals(userLoginPage.getAccountErrorMessage(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
     }
 
     @Test
     public void Login_05_Registed_Email_With_Input_Wrong_Password() {
-        commonPage.clickToMenuLinkByName(ElementData.CommonPage.LOGIN_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName(ElementData.BasePage.LOGIN_MENU_LINK_ID);
         userLoginPage = PageGeneratorManager.getUserLoginPage(driver);
         userLoginPage.inputToEmailTextbox(registedEmailAddress);
         userLoginPage.inputToPasswordTextbox(dataFaker.getInvalidPassword());
         userLoginPage.clickToLoginButton();
-        verifyEquals(userLoginPage.getAccountErrorMessage(), "Login was unsuccessful. Please correct the errors and try again./nThe credentials provided are incorrect");
+        verifyEquals(userLoginPage.getAccountErrorMessage(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
     }
 
     @Test
     public void Login_06_Login_Succesful() {
-        commonPage.clickToMenuLinkByName(ElementData.CommonPage.LOGIN_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName(ElementData.BasePage.LOGIN_MENU_LINK_ID);
         userLoginPage = PageGeneratorManager.getUserLoginPage(driver);
         userLoginPage.inputToEmailTextbox(registedEmailAddress);
         userLoginPage.inputToPasswordTextbox(registedPassword);
@@ -90,7 +89,6 @@ public class User_02_Login extends BaseTest {
     private WebDriver driver;
     private String registedEmailAddress, registedPassword;
     private DataHelper dataFaker;
-    private CommonPageObject commonPage;
     private UserLoginPageObject userLoginPage;
     private UserHomePageObject userHomePage;
 }

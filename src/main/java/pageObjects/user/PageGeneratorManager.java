@@ -1,12 +1,8 @@
 package pageObjects.user;
 
-import commons.CommonPageObject;
 import org.openqa.selenium.WebDriver;
 
 public class PageGeneratorManager {
-    public static CommonPageObject getCommonPage(WebDriver driver){
-        return new CommonPageObject(driver);
-    }
     public static UserHomePageObject getUserHomePage(WebDriver driver){
         return new UserHomePageObject(driver);
     }
@@ -15,5 +11,17 @@ public class PageGeneratorManager {
     }
     public static UserLoginPageObject getUserLoginPage(WebDriver driver){
         return new UserLoginPageObject(driver);
+    }
+
+    public static UserCustomerPageObject getUserCustomerPage(WebDriver driver){
+        return new UserCustomerPageObject(driver);
+    }
+
+    public static UserChangePasswordPageObject getUserChangePasswordPage(WebDriver driver){
+        return  new UserChangePasswordPageObject(driver);
+    }
+
+    public static UserAddressesPageObject getUserAddressesPage(WebDriver driver){
+        return  new UserAddressesPageObject(driver);
     }
 }

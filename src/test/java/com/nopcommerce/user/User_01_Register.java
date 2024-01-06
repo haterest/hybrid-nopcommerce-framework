@@ -1,10 +1,10 @@
 package com.nopcommerce.user;
 
 import commons.BaseTest;
-import commons.CommonPageObject;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import pageObjects.user.PageGeneratorManager;
+import pageObjects.user.UserHomePageObject;
 import pageObjects.user.UserRegisterPageObject;
 import utilities.DataHelper;
 import utilities.ElementData;
@@ -22,12 +22,12 @@ public class User_01_Register extends BaseTest {
         emailAdress = dataFaker.getEmail();
         invalidPassword = dataFaker.getInvalidPassword();
 
-        commonPage = PageGeneratorManager.getCommonPage(driver);
+        userHomePage = PageGeneratorManager.getUserHomePage(driver);
     }
 
     @Test
     public void Register_01_Empty_Data() {
-        commonPage.clickToMenuLinkByName(ElementData.CommonPage.REGISTER_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
         userRegisterPage.clickToRegisterButton();
         verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById(ElementData.RegisterPage.FIRST_NAME_ERROR_ID), "First name is required.");
@@ -39,7 +39,7 @@ public class User_01_Register extends BaseTest {
 
     @Test
     public void Register_02_Invalid_Email() {
-        commonPage.clickToMenuLinkByName(ElementData.CommonPage.REGISTER_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
         userRegisterPage.inputToTextboxById(ElementData.RegisterPage.FIRST_NAME_TEXTBOX_ID, firstName);
         userRegisterPage.inputToTextboxById(ElementData.RegisterPage.LAST_NAME_TEXTBOX_ID, lastName);
@@ -52,7 +52,7 @@ public class User_01_Register extends BaseTest {
 
     @Test
     public void Register_03_Register_Successful() {
-        commonPage.clickToMenuLinkByName(ElementData.CommonPage.REGISTER_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
         userRegisterPage.inputToTextboxById(ElementData.RegisterPage.FIRST_NAME_TEXTBOX_ID, firstName);
         userRegisterPage.inputToTextboxById(ElementData.RegisterPage.LAST_NAME_TEXTBOX_ID, lastName);
@@ -65,7 +65,7 @@ public class User_01_Register extends BaseTest {
 
     @Test
     public void Register_04_Email_Already_Exists() {
-        commonPage.clickToMenuLinkByName(ElementData.CommonPage.REGISTER_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
         userRegisterPage.inputToTextboxById(ElementData.RegisterPage.FIRST_NAME_TEXTBOX_ID, firstName);
         userRegisterPage.inputToTextboxById(ElementData.RegisterPage.LAST_NAME_TEXTBOX_ID, lastName);
@@ -78,7 +78,7 @@ public class User_01_Register extends BaseTest {
 
     @Test
     public void Register_05_Password_Less_Than_6_Characters() {
-        commonPage.clickToMenuLinkByName(ElementData.CommonPage.REGISTER_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
         userRegisterPage.inputToTextboxById(ElementData.RegisterPage.FIRST_NAME_TEXTBOX_ID, firstName);
         userRegisterPage.inputToTextboxById(ElementData.RegisterPage.LAST_NAME_TEXTBOX_ID, lastName);
@@ -86,12 +86,12 @@ public class User_01_Register extends BaseTest {
         userRegisterPage.inputToTextboxById(ElementData.RegisterPage.PASSWORD_TEXTBOX_ID, invalidPassword);
         userRegisterPage.inputToTextboxById(ElementData.RegisterPage.CONFIRM_PASSWORD_TEXTBOX_ID, invalidPassword);
         userRegisterPage.clickToRegisterButton();
-        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById(ElementData.RegisterPage.PASSWORD_ERROR_ID), "Password must meet the following rules: /nmust have at least 6 characters");
+        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById(ElementData.RegisterPage.PASSWORD_ERROR_ID), "Password must meet the following rules: \nmust have at least 6 characters");
     }
 
     @Test
     public void Register_06_Confirmation_Password_Does_not_Match() {
-        commonPage.clickToMenuLinkByName(ElementData.CommonPage.REGISTER_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
         userRegisterPage.inputToTextboxById(ElementData.RegisterPage.FIRST_NAME_TEXTBOX_ID, firstName);
         userRegisterPage.inputToTextboxById(ElementData.RegisterPage.LAST_NAME_TEXTBOX_ID, lastName);
@@ -110,6 +110,6 @@ public class User_01_Register extends BaseTest {
     private WebDriver driver;
     private DataHelper dataFaker;
     private String firstName, lastName, password, emailAdress, invalidPassword, registerMenuID;
-    private CommonPageObject commonPage;
     private UserRegisterPageObject userRegisterPage;
+    private UserHomePageObject userHomePage;
 }

@@ -9,6 +9,9 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class BasePage {
     public BasePage (WebDriver driver){
@@ -39,8 +42,19 @@ public class BasePage {
         driver.navigate().forward();
     }
 
-    protected void refreshCurrentPage( ) {
+    public void refreshCurrentPage( ) {
         driver.navigate().refresh();
+    }
+
+    public Set<Cookie> getAllCookie() {
+        return driver.manage().getCookies();
+    }
+
+    public void setCookies(Set<Cookie> cookies) {
+        for (Cookie cookie : cookies) {
+            driver.manage().addCookie(cookie);
+        }
+        sleepInSecond(3);
     }
 
     protected Alert waitForAlertPresence() {
@@ -202,28 +216,28 @@ public class BasePage {
         return getListWebElement(getDynamicXpath(locator, dynamicValues)).size();
     }
 
-    protected void checkToDefautCheckboxOrRadio(String locator) {
+    protected void clickToDefautCheckboxOrRadio(String locator) {
         WebElement element = getWebElement(locator);
         if (!element.isSelected()) {
             element.click();
         }
     }
 
-    protected void checkToDefautCheckboxOrRadio(String locator, String... dynamicValues) {
+    protected void clickToDefautCheckboxOrRadio(String locator, String... dynamicValues) {
         WebElement element = getWebElement(getDynamicXpath(locator, dynamicValues));
         if (!element.isSelected()) {
             element.click();
         }
     }
 
-    protected void uncheckToDefaultCheckbox(String locator) {
+    protected void unClickToDefaultCheckbox(String locator) {
         WebElement element = getWebElement(locator);
         if (element.isSelected()) {
             element.click();
         }
     }
 
-    protected void uncheckToDefaultCheckbox(String locator, String... dynamicValues) {
+    protected void unClickToDefaultCheckbox(String locator, String... dynamicValues) {
         WebElement element = getWebElement(getDynamicXpath(locator, dynamicValues));
         if (element.isSelected()) {
             element.click();
@@ -297,6 +311,10 @@ public class BasePage {
         return getWebElement(locator).isSelected();
     }
 
+    protected boolean isElementSelected(String locator, String... dynamicValues) {
+        return getWebElement(getDynamicXpath(locator, dynamicValues)).isSelected();
+    }
+
     protected void switchToFrameiFrame(String locator) {
         driver.switchTo().frame(getWebElement(locator));
     }
@@ -340,26 +358,6 @@ public class BasePage {
 
     protected void navigateToUrlByJS(String url) {
         ((JavascriptExecutor) driver).executeScript("window.location = '" + url + "'");
-    }
-
-    protected void highlightElement(String locator) {
-        WebElement element = getWebElement(locator);
-        String originalStyle = element.getAttribute("style");
-        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element,
-                "style", "border: 2px solid red; border-style: dashed;");
-        sleepInSecond(1);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element,
-                "style", originalStyle);
-    }
-
-    protected void highlightElement(String locator, String... dynamicValues) {
-        WebElement element = getWebElement( getDynamicXpath(locator, dynamicValues));
-        String originalStyle = element.getAttribute("style");
-        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element,
-                "style", "border: 2px solid red; border-style: dashed;");
-        sleepInSecond(1);
-        ((JavascriptExecutor) driver).executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element,
-                "style", originalStyle);
     }
 
     protected void clickToElementByJS(String locator) {
@@ -485,8 +483,28 @@ public class BasePage {
         }
         return false;
     }
+    protected String getNumberFromElementText(String locator){
+        String text = getElementText(locator);
+        Matcher matcher = Pattern.compile("\\d+").matcher(text);
+        matcher.find();
+        return matcher.group();
+    }
+
+    public void clickToMenuLinkByName(String titleMenuLink) {
+        waitForElementClickable(BasePageUI.MENU_LINK, titleMenuLink);
+        clickToElement(BasePageUI.MENU_LINK, titleMenuLink);
+    }
+
+    public void hoverMouseToMenuHeaderByName(String nameOfHeaderMenu) {
+
+    }
+
+    public void clickToProductFromMenuHeaderByName(String sortOfProductName) {
+
+    }
 
     private WebDriver driver;
     private Duration longTimeout = Duration.ofSeconds(GlobalConstant.getGlobalConstants().getLongTimeout());
     private Duration shortTimeout = Duration.ofSeconds(GlobalConstant.getGlobalConstants().getShortTimeout());
+
 }

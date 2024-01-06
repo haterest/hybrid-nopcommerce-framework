@@ -13,8 +13,11 @@ public class ElementData {
         public static final String PASSWORD_TEXTBOX_ID = "Password";
         public static final String CONFIRM_PASSWORD_TEXTBOX_ID = "ConfirmPassword";
     }
-    public static class CommonPage {
+    public static class BasePage {
         public static final String REGISTER_MENU_LINK_ID = "Register";
         public static final String LOGIN_MENU_LINK_ID = "Log in";
+        public static final String MY_ACCOUNT_MENU_LINK_ID = "My account";
+        public static final String LOG_OUT_MENU_LINK_ID = "Log out";
     }
+
 }

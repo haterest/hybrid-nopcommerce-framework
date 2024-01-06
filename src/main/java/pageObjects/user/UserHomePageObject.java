@@ -15,4 +15,8 @@ public class UserHomePageObject extends BasePage {
         waitForElementVisible(UserHomePageUI.MY_ACCOUNT_LINK_MENU);
         return isElementDisplayed(UserHomePageUI.MY_ACCOUNT_LINK_MENU);
     }
+
+
+
+
 }
