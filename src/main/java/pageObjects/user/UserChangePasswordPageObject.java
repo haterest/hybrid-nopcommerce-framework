@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import pageUIs.user.UserChangePasswordPageUI;
 
 public class UserChangePasswordPageObject extends UserMyAccountSideBarPageObject{
-    WebDriver driver;
     public UserChangePasswordPageObject(WebDriver driver){
         super(driver);
         this.driver = driver;

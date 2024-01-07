@@ -18,6 +18,10 @@ public class ElementData {
         public static final String LOGIN_MENU_LINK_ID = "Log in";
         public static final String MY_ACCOUNT_MENU_LINK_ID = "My account";
         public static final String LOG_OUT_MENU_LINK_ID = "Log out";
+        public static final String HEADER_CATEGORY = "HeaderMenu";
+        public static final String SIDE_BAR_CATEGORY = "SideBarMenu";
+        public static final String COMPUTER_CATEGORY = "Computers ";
+        public static final String DESKTOPS_SUB_CATEGORY = "Desktops ";
     }
 
 }

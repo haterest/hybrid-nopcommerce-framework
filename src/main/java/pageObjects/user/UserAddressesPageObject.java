@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import pageUIs.user.UserAddressesPageUI;
 
 public class UserAddressesPageObject extends UserMyAccountSideBarPageObject{
-    WebDriver driver;
     public UserAddressesPageObject(WebDriver driver){
         super(driver);
         this.driver = driver;

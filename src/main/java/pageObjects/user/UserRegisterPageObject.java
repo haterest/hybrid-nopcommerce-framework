@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import pageUIs.user.UserRegisterPageUI;
 
 public class UserRegisterPageObject extends BasePage {
-    WebDriver driver;
     public UserRegisterPageObject(WebDriver driver){
         super(driver);
         this.driver = driver;

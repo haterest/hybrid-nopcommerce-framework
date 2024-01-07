@@ -4,7 +4,6 @@ import org.openqa.selenium.WebDriver;
 import pageUIs.user.UserCustomerPageUI;
 
 public class UserCustomerPageObject extends UserMyAccountSideBarPageObject {
-    WebDriver driver;
     public UserCustomerPageObject(WebDriver driver){
         super(driver);
         this.driver = driver;
@@ -104,4 +103,6 @@ public class UserCustomerPageObject extends UserMyAccountSideBarPageObject {
         waitForElementVisible(UserCustomerPageUI.COMPANY_TEXTBOX);
         return getElementAttribute(UserCustomerPageUI.COMPANY_TEXTBOX, "value");
     }
+
+
 }

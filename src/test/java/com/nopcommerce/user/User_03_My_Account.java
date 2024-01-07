@@ -40,6 +40,10 @@ public class User_03_My_Account extends BaseTest {
         addressPhoneNumber = "0123456789";
         addressFaxNumber = "0987654321";
 
+        productName  = "Build your own computer";
+        reviewTitle = "sample title review " + getRandomNumber();
+        reviewContent = "sample content review " + getRandomNumber();
+
         userHomePage = PageGeneratorManager.getUserHomePage(driver);
         userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
@@ -117,7 +121,7 @@ public class User_03_My_Account extends BaseTest {
 
     @Test
     public void My_Account_03_Change_Password() {
-        userChangePasswordPage =  userAddressesPage.clickToChangePasswordPage();
+        userChangePasswordPage = userAddressesPage.clickToChangePasswordPage();
         userChangePasswordPage.inputToOldPasswordTextbox(password);
         userChangePasswordPage.inputToNewPasswordTextbox(newPassword);
         userChangePasswordPage.inputToConfirmPasswordTextbox(newPassword);
@@ -133,7 +137,7 @@ public class User_03_My_Account extends BaseTest {
         userLoginPage.inputToEmailTextbox(customerEmailAddress);
         userLoginPage.inputToPasswordTextbox(password);
         userLoginPage.clickToLoginButton();
-        verifyEquals(userLoginPage.getAccountErrorMessage(),"Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
+        verifyEquals(userLoginPage.getAccountErrorMessage(), "Login was unsuccessful. Please correct the errors and try again.\nThe credentials provided are incorrect");
 
         userLoginPage.refreshCurrentPage();
         userLoginPage.inputToEmailTextbox(customerEmailAddress);
@@ -145,8 +149,22 @@ public class User_03_My_Account extends BaseTest {
 
     @Test
     public void My_Account_04_Product_Reviews() {
-        userHomePage.hoverMouseToMenuHeaderByName("Computers ");
-        userHomePage.clickToProductFromMenuHeaderByName("Desktops ");
+        userHomePage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY, ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.DESKTOPS_SUB_CATEGORY);
+        userProductDesktopPage = PageGeneratorManager.getUserProductDesktopPage(driver);
+        userDetailProductPage = userProductDesktopPage.openDetailProductPageByName(productName);
+        userProductReviewPage = userDetailProductPage.clickToAddYourReviewLink();
+        userProductReviewPage.inputToReviewTitleTextbox(reviewTitle);
+        userProductReviewPage.inputToReviewTextTextArea(reviewContent);
+        userProductReviewPage.clickToSubmitReviewButton();
+        verifyTrue(userProductReviewPage.isSuccessfulReviewMessageDisplayed("Product review is successfully added."));
+        verifyEquals(userProductReviewPage.getReviewTitleText(), reviewTitle);
+        verifyEquals(userProductReviewPage.getReviewContentText(), reviewContent);
+        userProductReviewPage.clickToMenuLinkByName(ElementData.BasePage.MY_ACCOUNT_MENU_LINK_ID);
+        userCustomerPage = PageGeneratorManager.getUserCustomerPage(driver);
+        userMyProductReviewPage = userCustomerPage.clickToMyProductReviewPage();
+        verifyEquals(userMyProductReviewPage.getReviewTitleText(), reviewTitle);
+        verifyEquals(userMyProductReviewPage.getReviewContentText(),  reviewContent);
+        verifyEquals(userMyProductReviewPage.getReviewProductName(), productName);
     }
 
     @AfterClass(alwaysRun = true)
@@ -159,7 +177,7 @@ public class User_03_My_Account extends BaseTest {
             customerMonthOfBirthDay, customerYearOfBirthDay, customerEmailAddress, customerCompanyName,
             addressFirstName, addressLastName, addressEmail, addressCompanyName, addressCountry, addressStateProvincy,
             addressCity, addressAddress1, addressAddress2, addressZipPostalCode, addressPhoneNumber, addressFaxNumber,
-            emailAddress, password, newPassword;
+            emailAddress, password, newPassword, productName, reviewTitle, reviewContent;
     private DataHelper dataFaker;
     private UserLoginPageObject userLoginPage;
     private UserCustomerPageObject userCustomerPage;
@@ -167,4 +185,8 @@ public class User_03_My_Account extends BaseTest {
     private UserRegisterPageObject userRegisterPage;
     private UserChangePasswordPageObject userChangePasswordPage;
     private UserAddressesPageObject userAddressesPage;
+    private UserProductDesktopPageObject userProductDesktopPage;
+    private UserDetailProductPageObject userDetailProductPage;
+    private UserProductReviewPageObject userProductReviewPage;
+    private UserMyProductReviewPageObject userMyProductReviewPage;
 }

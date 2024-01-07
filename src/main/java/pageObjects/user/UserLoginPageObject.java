@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import pageUIs.user.UserLoginPageUI;
 
 public class UserLoginPageObject extends BasePage {
-    WebDriver driver;
     public UserLoginPageObject(WebDriver driver){
         super(driver);
         this.driver = driver;

@@ -24,4 +24,21 @@ public class PageGeneratorManager {
     public static UserAddressesPageObject getUserAddressesPage(WebDriver driver){
         return  new UserAddressesPageObject(driver);
     }
+
+    public static UserProductDesktopPageObject getUserProductDesktopPage(WebDriver driver){
+        return  new UserProductDesktopPageObject(driver);
+    }
+
+    public static UserDetailProductPageObject getUserDetailProductPage(WebDriver driver){
+        return  new UserDetailProductPageObject(driver);
+    }
+
+    public static UserProductReviewPageObject getUserProductReviewPage(WebDriver driver){
+        return  new UserProductReviewPageObject(driver);
+    }
+
+    public static UserMyProductReviewPageObject getUserMyProductReviewPage(WebDriver driver){
+        return  new UserMyProductReviewPageObject(driver);
+    }
+
 }

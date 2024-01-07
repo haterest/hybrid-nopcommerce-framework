@@ -328,6 +328,11 @@ public class BasePage {
         action.moveToElement(getWebElement(locator)).perform();
     }
 
+    protected void hoverMouseToElement(String locator, String... dynamicValues) {
+        Actions action = new Actions(driver);
+        action.moveToElement(getWebElement(getDynamicXpath(locator, dynamicValues))).perform();
+    }
+
     protected void pressKeyToElement(String locator, Keys key) {
         Actions action = new Actions(driver);
         action.sendKeys(getWebElement(locator), key).perform();
@@ -495,16 +500,25 @@ public class BasePage {
         clickToElement(BasePageUI.MENU_LINK, titleMenuLink);
     }
 
-    public void hoverMouseToMenuHeaderByName(String nameOfHeaderMenu) {
-
+    public void openCategoriesPageByName(String position, String categoryName, String productName) {
+        switch (position){
+            case "HeaderMenu" :
+                waitForAllElementsVisible(BasePageUI.HEADER_MENU_LINK, categoryName);
+                hoverMouseToElement(BasePageUI.HEADER_MENU_LINK, categoryName);
+                waitForElementClickable(BasePageUI.HEADER_MENU_LINK, productName);
+                clickToElement(BasePageUI.HEADER_MENU_LINK, productName);
+                break;
+            case "SideBarMenu" :
+                waitForElementClickable(BasePageUI.SIDE_BAR_MENU_LINK, categoryName);
+                clickToElement(BasePageUI.SIDE_BAR_MENU_LINK, categoryName);
+                waitForElementClickable(BasePageUI.SIDE_BAR_MENU_LINK, productName);
+                clickToElement(BasePageUI.SIDE_BAR_MENU_LINK, productName);
+                break;
+        }
     }
 
-    public void clickToProductFromMenuHeaderByName(String sortOfProductName) {
-
-    }
-
-    private WebDriver driver;
-    private Duration longTimeout = Duration.ofSeconds(GlobalConstant.getGlobalConstants().getLongTimeout());
-    private Duration shortTimeout = Duration.ofSeconds(GlobalConstant.getGlobalConstants().getShortTimeout());
+    protected WebDriver driver;
+    protected Duration longTimeout = Duration.ofSeconds(GlobalConstant.getGlobalConstants().getLongTimeout());
+    protected Duration shortTimeout = Duration.ofSeconds(GlobalConstant.getGlobalConstants().getShortTimeout());
 
 }

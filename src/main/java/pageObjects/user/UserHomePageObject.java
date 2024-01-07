@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import pageUIs.user.UserHomePageUI;
 
 public class UserHomePageObject extends BasePage {
-    WebDriver driver;
     public UserHomePageObject (WebDriver driver){
         super(driver);
         this.driver = driver;
