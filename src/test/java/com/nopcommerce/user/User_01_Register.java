@@ -86,7 +86,7 @@ public class User_01_Register extends BaseTest {
         userRegisterPage.inputToTextboxById(ElementData.RegisterPage.PASSWORD_TEXTBOX_ID, invalidPassword);
         userRegisterPage.inputToTextboxById(ElementData.RegisterPage.CONFIRM_PASSWORD_TEXTBOX_ID, invalidPassword);
         userRegisterPage.clickToRegisterButton();
-        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById(ElementData.RegisterPage.PASSWORD_ERROR_ID), "Password must meet the following rules: \nmust have at least 6 characters");
+        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById(ElementData.RegisterPage.PASSWORD_ERROR_ID), "Password must meet the following rules:\nmust have at least 6 characters");
     }
 
     @Test

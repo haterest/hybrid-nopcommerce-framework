@@ -36,6 +36,7 @@ public class UserLoginPageObject extends BasePage {
         return getElementText(UserLoginPageUI.ERROR_ACCOUNT_MESSAGE);
     }
 
+
 //    public UserCustomerPageObject openMyAccountLink() {
 //        String myAccountLink = getElementAttribute(BasePageUI.MY_ACCOUNT_MENU_LINK, "href");
 //        openPageURL(myAccountLink);

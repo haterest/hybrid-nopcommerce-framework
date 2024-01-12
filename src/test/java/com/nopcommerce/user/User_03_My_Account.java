@@ -182,9 +182,9 @@ public class User_03_My_Account extends BaseTest {
     private UserLoginPageObject userLoginPage;
     private UserCustomerPageObject userCustomerPage;
     private UserHomePageObject userHomePage;
+    private UserAddressesPageObject userAddressesPage;
     private UserRegisterPageObject userRegisterPage;
     private UserChangePasswordPageObject userChangePasswordPage;
-    private UserAddressesPageObject userAddressesPage;
     private UserProductDesktopPageObject userProductDesktopPage;
     private UserDetailProductPageObject userDetailProductPage;
     private UserProductReviewPageObject userProductReviewPage;

@@ -24,4 +24,8 @@ public class ElementData {
         public static final String DESKTOPS_SUB_CATEGORY = "Desktops ";
     }
 
+    public static class FooterPage {
+        public static final String SEARCH_LINK = "Search";
+    }
+
 }

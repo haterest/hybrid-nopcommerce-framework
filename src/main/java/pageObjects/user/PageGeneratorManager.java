@@ -41,4 +41,8 @@ public class PageGeneratorManager {
         return  new UserMyProductReviewPageObject(driver);
     }
 
+    public static UserSearchPageObject getUserSearchPage(WebDriver driver){
+        return  new UserSearchPageObject(driver);
+    }
+
 }

@@ -482,12 +482,13 @@ public class BasePage {
     protected boolean isKeywordDisplayInSearchResult(String locator, String keywords) {
         List<WebElement> listElement = getListWebElement(locator);
         for (WebElement eachElement : listElement) {
-            if (eachElement.getText().contains(keywords)) {
-                return true;
+            if (!eachElement.getText().toLowerCase().contains(keywords.toLowerCase())){
+                return false;
             }
         }
-        return false;
+        return true;
     }
+
     protected String getNumberFromElementText(String locator){
         String text = getElementText(locator);
         Matcher matcher = Pattern.compile("\\d+").matcher(text);
@@ -515,6 +516,10 @@ public class BasePage {
                 clickToElement(BasePageUI.SIDE_BAR_MENU_LINK, productName);
                 break;
         }
+    }
+    public void clickToLinkFooterByName(String nameLink) {
+        waitForElementClickable(BasePageUI.FOOTER_LINK_BY_NAME, nameLink);
+        clickToElement(BasePageUI.FOOTER_LINK_BY_NAME, nameLink);
     }
 
     protected WebDriver driver;
