@@ -25,8 +25,8 @@ public class PageGeneratorManager {
         return  new UserAddressesPageObject(driver);
     }
 
-    public static UserProductDesktopPageObject getUserProductDesktopPage(WebDriver driver){
-        return  new UserProductDesktopPageObject(driver);
+    public static UserDesktopPageObject getUserDesktopPage(WebDriver driver){
+        return  new UserDesktopPageObject(driver);
     }
 
     public static UserDetailProductPageObject getUserDetailProductPage(WebDriver driver){
@@ -43,6 +43,10 @@ public class PageGeneratorManager {
 
     public static UserSearchPageObject getUserSearchPage(WebDriver driver){
         return  new UserSearchPageObject(driver);
+    }
+
+    public static UserNotebooksPageObject getUserNotebooksPage(WebDriver driver){
+        return  new UserNotebooksPageObject(driver);
     }
 
 }

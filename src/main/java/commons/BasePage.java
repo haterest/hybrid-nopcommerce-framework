@@ -8,6 +8,8 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -391,23 +393,15 @@ public class BasePage {
 
     protected boolean areJQueryAndJSLoadedSuccess() {
         WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
-        ExpectedCondition<Boolean> jQueryLoad = new ExpectedCondition<Boolean>() {
-            @Override
-            public Boolean apply(WebDriver driver) {
-                try {
-                    return ((Long) ((JavascriptExecutor) driver).executeScript("return jQuery.active") == 0);
-                } catch (Exception e) {
-                    return true;
-                }
+        ExpectedCondition<Boolean> jQueryLoad = driver -> {
+            try {
+                return ((Long) ((JavascriptExecutor) driver).executeScript("return jQuery.active") == 0);
+            } catch (Exception e) {
+                return true;
             }
         };
-        ExpectedCondition<Boolean> jsLoad = new ExpectedCondition<Boolean>() {
-            @Override
-            public Boolean apply(WebDriver driver) {
-                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString()
-                        .equals("complete");
-            }
-        };
+        ExpectedCondition<Boolean> jsLoad = driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").toString()
+                .equals("complete");
         return explicitWait.until(jQueryLoad) && explicitWait.until(jsLoad);
     }
 
@@ -416,29 +410,10 @@ public class BasePage {
                 getWebElement(locator));
     }
 
-    protected boolean isImageLoaded(String locator) {
-        boolean status = (boolean) ((JavascriptExecutor) driver).executeScript(
-                "return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0",
-                getWebElement(locator));
-        if (status) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    protected boolean isImageLoaded(String locator, String... dynamicValues) {
-        boolean status = (boolean) ((JavascriptExecutor) driver).executeScript(
-                "return arguments[0].complete && typeof arguments[0].naturalWidth != \"undefined\" && arguments[0].naturalWidth > 0",
-                getWebElement(getDynamicXpath(locator, dynamicValues)));
-        return status;
-    }
-
     protected void waitForElementVisible(String locator) {
         WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
         explicitWait.until(ExpectedConditions.visibilityOfElementLocated(getByLocator(locator)));
     }
-
 
     protected void waitForElementVisible(String locator, String... dynamicValues) {
         WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
@@ -487,6 +462,52 @@ public class BasePage {
             }
         }
         return true;
+    }
+
+    protected boolean isNameSortByAscending(String locator) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        List<WebElement> nameProducts = getListWebElement(locator);
+        for (WebElement elementName : nameProducts) {
+            arrayList.add(elementName.getText());
+        }
+        ArrayList<String> arrayListSorted = new ArrayList<>(arrayList);
+        Collections.sort(arrayListSorted);
+        return arrayListSorted.equals(arrayList);
+    }
+
+    public boolean isNameSortByDescending(String locator) {
+        ArrayList<String> arrayList = new ArrayList<>();
+        List<WebElement> nameProduct = getListWebElement(locator);
+        for (WebElement nameElement : nameProduct) {
+            arrayList.add(nameElement.getText());
+        }
+        ArrayList<String> arrayListSorted = new ArrayList<>(arrayList);
+        Collections.sort(arrayListSorted);
+        Collections.reverse(arrayListSorted);
+        return arrayListSorted.equals(arrayList);
+    }
+
+    public boolean isPriceSortByAscending(String locator) {
+        ArrayList<Float> arrayList = new ArrayList<>();
+        List<WebElement> nameProduct = getListWebElement(locator);
+        for (WebElement nameElement : nameProduct) {
+            arrayList.add(Float.parseFloat(nameElement.getText().replaceAll("[^\\d.]", "")));
+        }
+        ArrayList<Float> arrayListSorted = new ArrayList<>(arrayList);
+        Collections.sort(arrayListSorted);
+        return arrayListSorted.equals(arrayList);
+    }
+
+    public boolean isPriceSortByDescending(String locator) {
+        ArrayList<Float> arrayList = new ArrayList<>();
+        List<WebElement> nameProduct = getListWebElement(locator);
+        for (WebElement nameElement : nameProduct) {
+            arrayList.add(Float.parseFloat(nameElement.getText().replaceAll("[^\\d.]", "")));
+        }
+        ArrayList<Float> arrayListSorted = new ArrayList<>(arrayList);
+        Collections.sort(arrayListSorted);
+        Collections.reverse(arrayListSorted);
+        return arrayListSorted.equals(arrayList);
     }
 
     protected String getNumberFromElementText(String locator){

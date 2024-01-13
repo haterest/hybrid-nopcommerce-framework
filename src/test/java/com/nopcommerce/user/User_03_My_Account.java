@@ -150,8 +150,8 @@ public class User_03_My_Account extends BaseTest {
     @Test
     public void My_Account_04_Product_Reviews() {
         userHomePage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY, ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.DESKTOPS_SUB_CATEGORY);
-        userProductDesktopPage = PageGeneratorManager.getUserProductDesktopPage(driver);
-        userDetailProductPage = userProductDesktopPage.openDetailProductPageByName(productName);
+        userDesktopPage = PageGeneratorManager.getUserDesktopPage(driver);
+        userDetailProductPage = userDesktopPage.openDetailProductPageByName(productName);
         userProductReviewPage = userDetailProductPage.clickToAddYourReviewLink();
         userProductReviewPage.inputToReviewTitleTextbox(reviewTitle);
         userProductReviewPage.inputToReviewTextTextArea(reviewContent);
@@ -185,7 +185,7 @@ public class User_03_My_Account extends BaseTest {
     private UserAddressesPageObject userAddressesPage;
     private UserRegisterPageObject userRegisterPage;
     private UserChangePasswordPageObject userChangePasswordPage;
-    private UserProductDesktopPageObject userProductDesktopPage;
+    private UserDesktopPageObject userDesktopPage;
     private UserDetailProductPageObject userDetailProductPage;
     private UserProductReviewPageObject userProductReviewPage;
     private UserMyProductReviewPageObject userMyProductReviewPage;
