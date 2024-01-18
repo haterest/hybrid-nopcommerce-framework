@@ -52,12 +52,11 @@ public class CommonRegisterLogin extends BaseTest {
         closeBrowserDriver();
     }
 
-    private WebDriver driver;
+    WebDriver driver;
     public static Set<Cookie> loggedCookies;
-    private DataHelper dataFaker;
-    public static String emailAddress, password;
-    private String firstName, lastName;
-    private UserRegisterPageObject userRegisterPage;
-    private UserLoginPageObject userLoginPage;
-    private UserHomePageObject userHomePage;
+    DataHelper dataFaker;
+    public static String emailAddress, password, firstName, lastName;
+    UserRegisterPageObject userRegisterPage;
+    UserLoginPageObject userLoginPage;
+    UserHomePageObject userHomePage;
 }

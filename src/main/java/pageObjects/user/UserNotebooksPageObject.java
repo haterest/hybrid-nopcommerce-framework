@@ -70,4 +70,10 @@ public class UserNotebooksPageObject extends BasePage {
     public boolean isPagingNotDisplay() {
         return isElementUndisplayed(UserNotebooksPageUI.PAGING_TAB);
     }
+
+    public UserDetailProductPageObject clickToDetaiProductByName(String productName) {
+        waitForElementClickable(UserNotebooksPageUI.PRODUCT_TITLE_LINK, productName);
+        clickToElement(UserNotebooksPageUI.PRODUCT_TITLE_LINK, productName);
+        return PageGeneratorManager.getUserDetailProductPage(driver);
+    }
 }

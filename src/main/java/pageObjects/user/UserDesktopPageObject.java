@@ -17,4 +17,20 @@ public class UserDesktopPageObject extends BasePage {
         clickToElement(UserDesktopPageUI.PRODUCT_TITLE_LINK_BY_NAME, productName);
         return PageGeneratorManager.getUserDetailProductPage(driver);
     }
+
+    public void clickAddToCompareListButtonByName(String productName) {
+        waitForElementClickable(UserDesktopPageUI.ADD_TO_COMPARE_BUTTON_BY_NAME, productName);
+        clickToElementByJS(UserDesktopPageUI.ADD_TO_COMPARE_BUTTON_BY_NAME, productName);
+        sleepInSecond(2);
+    }
+
+    public Object getSuccessfulMessageDisplayed() {
+        waitForElementVisible(UserDesktopPageUI.SUCCESSFUL_MESSAGE);
+        return getElementText(UserDesktopPageUI.SUCCESSFUL_MESSAGE);
+    }
+
+    public void closeSuccessfulMessage() {
+        waitForElementClickable(UserDesktopPageUI.CLOSE_SUCCESSFUL_MESSAGE_BUTTON);
+        clickToElement(UserDesktopPageUI.CLOSE_SUCCESSFUL_MESSAGE_BUTTON);
+    }
 }

@@ -20,13 +20,15 @@ public class ElementData {
         public static final String LOG_OUT_MENU_LINK_ID = "Log out";
         public static final String HEADER_CATEGORY = "HeaderMenu";
         public static final String SIDE_BAR_CATEGORY = "SideBarMenu";
-        public static final String COMPUTER_CATEGORY = "Computers ";
-        public static final String NOTEBOOKS_SUB_CATEGORY = "Notebooks ";
-        public static final String DESKTOPS_SUB_CATEGORY = "Desktops ";
+        public static final String COMPUTER_CATEGORY = "Computers";
+        public static final String NOTEBOOKS_SUB_CATEGORY = "Notebooks";
+        public static final String DESKTOPS_SUB_CATEGORY = "Desktops";
     }
 
     public static class FooterPage {
         public static final String SEARCH_LINK = "Search";
+        public static final String COMPARE_PRODUCTS_LIST_LINK = "Compare products list";
+        public static final String RECENTLY_VIEWED_PRODUCTS_LINK = "Recently viewed products";
     }
 
 }

@@ -6,6 +6,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import pageObjects.user.PageGeneratorManager;
+import pageObjects.user.UserWishListPageObject;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -89,7 +91,7 @@ public class BasePage {
     }
 
     private By getByLocator(String locatorType) {
-        By by = null;
+        By by;
         if (locatorType.startsWith("id=") || locatorType.startsWith("Id=") || locatorType.startsWith("ID=")) {
             by = By.id(locatorType.substring(3));
         } else if (locatorType.startsWith("class=") || locatorType.startsWith("Class=")
@@ -179,7 +181,7 @@ public class BasePage {
         getWebElement(parentLocator).click();
         sleepInSecond(1);
         WebDriverWait explicitWait;
-        JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
+        JavascriptExecutor jsExecutor;
         explicitWait = new WebDriverWait(driver, longTimeout);
         List<WebElement> allItems = explicitWait
                 .until(ExpectedConditions.presenceOfAllElementsLocatedBy(getByLocator(childItemLocator)));
@@ -260,11 +262,7 @@ public class BasePage {
         overrideGlobalTimeout(longTimeout);
         if (elements.size() == 0) {
             return true;
-        } else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return !elements.get(0).isDisplayed();
     }
 
     protected boolean isElementUndisplayed(String locator, String... dynamicValues) {
@@ -273,11 +271,7 @@ public class BasePage {
         overrideGlobalTimeout(longTimeout);
         if (elements.size() == 0) {
             return true;
-        } else if (elements.size() > 0 && !elements.get(0).isDisplayed()) {
-            return true;
-        } else {
-            return false;
-        }
+        } else return !elements.get(0).isDisplayed();
     }
 
     /*
@@ -391,7 +385,7 @@ public class BasePage {
                 getWebElement( locator));
     }
 
-    protected boolean areJQueryAndJSLoadedSuccess() {
+    public boolean areJQueryAndJSLoadedSuccess() {
         WebDriverWait explicitWait = new WebDriverWait(driver, longTimeout);
         ExpectedCondition<Boolean> jQueryLoad = driver -> {
             try {
@@ -475,7 +469,7 @@ public class BasePage {
         return arrayListSorted.equals(arrayList);
     }
 
-    public boolean isNameSortByDescending(String locator) {
+    protected boolean isNameSortByDescending(String locator) {
         ArrayList<String> arrayList = new ArrayList<>();
         List<WebElement> nameProduct = getListWebElement(locator);
         for (WebElement nameElement : nameProduct) {
@@ -487,7 +481,7 @@ public class BasePage {
         return arrayListSorted.equals(arrayList);
     }
 
-    public boolean isPriceSortByAscending(String locator) {
+    protected boolean isPriceSortByAscending(String locator) {
         ArrayList<Float> arrayList = new ArrayList<>();
         List<WebElement> nameProduct = getListWebElement(locator);
         for (WebElement nameElement : nameProduct) {
@@ -498,7 +492,7 @@ public class BasePage {
         return arrayListSorted.equals(arrayList);
     }
 
-    public boolean isPriceSortByDescending(String locator) {
+    protected boolean isPriceSortByDescending(String locator) {
         ArrayList<Float> arrayList = new ArrayList<>();
         List<WebElement> nameProduct = getListWebElement(locator);
         for (WebElement nameElement : nameProduct) {
@@ -525,7 +519,7 @@ public class BasePage {
     public void openCategoriesPageByName(String position, String categoryName, String productName) {
         switch (position){
             case "HeaderMenu" :
-                waitForAllElementsVisible(BasePageUI.HEADER_MENU_LINK, categoryName);
+                waitForElementVisible(BasePageUI.HEADER_MENU_LINK, categoryName);
                 hoverMouseToElement(BasePageUI.HEADER_MENU_LINK, categoryName);
                 waitForElementClickable(BasePageUI.HEADER_MENU_LINK, productName);
                 clickToElement(BasePageUI.HEADER_MENU_LINK, productName);
@@ -541,6 +535,11 @@ public class BasePage {
     public void clickToLinkFooterByName(String nameLink) {
         waitForElementClickable(BasePageUI.FOOTER_LINK_BY_NAME, nameLink);
         clickToElement(BasePageUI.FOOTER_LINK_BY_NAME, nameLink);
+    }
+    public UserWishListPageObject clickToWishListMenuLink() {
+        waitForElementClickable(BasePageUI.WISHLIST_MENU_LINK);
+        clickToElement(BasePageUI.WISHLIST_MENU_LINK);
+        return PageGeneratorManager.getUserWishListPage(driver);
     }
 
     protected WebDriver driver;

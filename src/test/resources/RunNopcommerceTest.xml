@@ -8,8 +8,8 @@
     <test name="Run On Chrome" preserve-order="true">
         <parameter name="browserName" value="chrome"/>
         <classes>
-<!--            <class name="commons.CommonRegisterLogin"/>-->
-            <class name="com.nopcommerce.user.User_05_Sort_Display"/>
+            <class name="commons.CommonRegisterLogin"/>
+            <class name="com.nopcommerce.user.User_06_WishList_Compare_RecentView"/>
         </classes>
     </test>
 </suite>
