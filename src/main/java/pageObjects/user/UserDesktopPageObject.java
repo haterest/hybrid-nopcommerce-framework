@@ -21,7 +21,7 @@ public class UserDesktopPageObject extends BasePage {
     public void clickAddToCompareListButtonByName(String productName) {
         waitForElementClickable(UserDesktopPageUI.ADD_TO_COMPARE_BUTTON_BY_NAME, productName);
         clickToElementByJS(UserDesktopPageUI.ADD_TO_COMPARE_BUTTON_BY_NAME, productName);
-        sleepInSecond(2);
+        waitForElementInvisible(UserDesktopPageUI.LOADING_PAGE_ICON);
     }
 
     public Object getSuccessfulMessageDisplayed() {
