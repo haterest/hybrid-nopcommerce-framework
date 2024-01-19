@@ -25,4 +25,6 @@ The project will using Google Chrome by default if no other browser is stated.
 
 :white_circle: Using test suite for running the test by following the project path `\src\test\resources\RunNopcommerceTest.xml`
 
-> #### Grid, Extend Report and Parallel features will be update late...
+---
+
+> Grid, Extend Report and Parallel features will be update late...
