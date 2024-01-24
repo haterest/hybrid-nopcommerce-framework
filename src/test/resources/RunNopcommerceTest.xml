@@ -9,7 +9,7 @@
         <parameter name="browserName" value="chrome"/>
         <classes>
             <class name="commons.CommonRegisterLogin"/>
-            <class name="com.nopcommerce.user.User_06_WishList_Compare_RecentView"/>
+            <class name="com.nopcommerce.user.User_08_Payment"/>
         </classes>
     </test>
 </suite>

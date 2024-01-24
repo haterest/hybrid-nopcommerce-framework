@@ -8,6 +8,8 @@ import org.testng.Reporter;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class BaseTest {
@@ -53,6 +55,12 @@ public class BaseTest {
     protected int getRandomNumber() {
         Random rand = new Random();
         return rand.nextInt(9999);
+    }
+
+    protected String getCurrentDate(){
+        LocalDate currentDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
+        return currentDate.format(formatter);
     }
 
     protected boolean verifyTrue(boolean condition) {

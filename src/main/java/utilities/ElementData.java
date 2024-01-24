@@ -13,6 +13,7 @@ public class ElementData {
         public static final String PASSWORD_TEXTBOX_ID = "Password";
         public static final String CONFIRM_PASSWORD_TEXTBOX_ID = "ConfirmPassword";
     }
+
     public static class BasePage {
         public static final String REGISTER_MENU_LINK_ID = "Register";
         public static final String LOGIN_MENU_LINK_ID = "Log in";
@@ -30,5 +31,4 @@ public class ElementData {
         public static final String COMPARE_PRODUCTS_LIST_LINK = "Compare products list";
         public static final String RECENTLY_VIEWED_PRODUCTS_LINK = "Recently viewed products";
     }
-
 }

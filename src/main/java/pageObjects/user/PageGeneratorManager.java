@@ -65,4 +65,12 @@ public class PageGeneratorManager {
         return  new UserRecentlyProductsPageObject(driver);
     }
 
+    public static UserCheckoutPageObject getUserCheckoutPage(WebDriver driver){
+        return  new UserCheckoutPageObject(driver);
+    }
+
+    public static UserOrderPageObject getUserOrderPage(WebDriver driver){
+        return  new UserOrderPageObject(driver);
+    }
+
 }

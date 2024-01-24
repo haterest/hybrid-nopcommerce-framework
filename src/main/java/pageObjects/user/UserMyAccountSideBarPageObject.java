@@ -27,4 +27,10 @@ public class UserMyAccountSideBarPageObject extends BasePage {
         clickToElement(UserMyAccountSideBarPageUI.MY_PRODUCT_REVIEWS_LINK);
         return PageGeneratorManager.getUserMyProductReviewPage(driver);
     }
+
+    public UserOrderPageObject clickToOrderPage() {
+        waitForElementClickable(UserMyAccountSideBarPageUI.ORDERS_LINK);
+        clickToElement(UserMyAccountSideBarPageUI.ORDERS_LINK);
+        return PageGeneratorManager.getUserOrderPage(driver);
+    }
 }
