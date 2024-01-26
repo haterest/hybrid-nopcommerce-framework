@@ -3,7 +3,6 @@ package pageObjects.user;
 import commons.BasePage;
 import org.openqa.selenium.WebDriver;
 import pageUIs.user.UserCheckOutPageUI;
-import pageUIs.user.UserOrderPageUI;
 
 public class UserCheckoutPageObject extends BasePage{
     public UserCheckoutPageObject(WebDriver driver) {
@@ -21,7 +20,7 @@ public class UserCheckoutPageObject extends BasePage{
         sendKeyToElement(UserCheckOutPageUI.TEXTBOX_BY_ID, keyToSend, textboxID);
     }
 
-    public void selectCountryDropdownByIDAndName(String dropdownID, String countryName) {
+    public void selectDropdownByIDAndName(String dropdownID, String countryName) {
         waitForElementVisible(UserCheckOutPageUI.DROPDOWN_BY_ID, dropdownID);
         selectItemInDefaultDropDown(UserCheckOutPageUI.DROPDOWN_BY_ID, countryName, dropdownID);
     }
@@ -32,13 +31,13 @@ public class UserCheckoutPageObject extends BasePage{
     }
 
     public void clickRadioButtonByLabel(String labelName) {
-        waitForElementClickable(UserCheckOutPageUI.SHIP_METHOD_RADIO_BY_LABEL, labelName);
-        clickToDefautCheckboxOrRadio(UserCheckOutPageUI.SHIP_METHOD_RADIO_BY_LABEL, labelName);
+        waitForElementClickable(UserCheckOutPageUI.RADIO_BUTTON_BY_LABEL, labelName);
+        clickToDefautCheckboxOrRadio(UserCheckOutPageUI.RADIO_BUTTON_BY_LABEL, labelName);
     }
 
     public boolean isPaymentMethodRadioSelected(String paymentMethod) {
-        waitForElementVisible(UserCheckOutPageUI.SHIP_METHOD_RADIO_BY_LABEL, paymentMethod);
-        return isElementSelected(UserCheckOutPageUI.SHIP_METHOD_RADIO_BY_LABEL, paymentMethod);
+        waitForElementVisible(UserCheckOutPageUI.RADIO_BUTTON_BY_LABEL, paymentMethod);
+        return isElementSelected(UserCheckOutPageUI.RADIO_BUTTON_BY_LABEL, paymentMethod);
     }
 
     public Object getInforCheckoutByNameAndValue(String titleName, String nameValue) {
@@ -105,5 +104,9 @@ public class UserCheckoutPageObject extends BasePage{
     public Object getDataTableCheckout(String value) {
         waitForElementVisible(UserCheckOutPageUI.DATA_TABLE_BY_VALUE, value);
         return getElementText(UserCheckOutPageUI.DATA_TABLE_BY_VALUE, value);
+    }
+
+    public void waitForOrderComplete() {
+        sleepInSecond(10);
     }
 }

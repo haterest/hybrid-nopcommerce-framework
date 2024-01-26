@@ -97,4 +97,15 @@ public class UserShoppingCartPageObject extends BasePage {
         clickToElement(UserShoppingCartPageUI.CHECKOUT_BUTTON);
         return PageGeneratorManager.getUserCheckoutPage(driver);
     }
+
+    public void inputToQuantityTextbox(String quantity) {
+        waitForElementVisible(UserShoppingCartPageUI.QUANTITY_TEXTBOX);
+        sendKeyToElement(UserShoppingCartPageUI.QUANTITY_TEXTBOX, quantity);
+    }
+
+    public void clickUpdateShoppingCartButton() {
+        waitForElementClickable(UserShoppingCartPageUI.UPDATE_SHOPPING_CART_BUTTON);
+        clickToElement(UserShoppingCartPageUI.UPDATE_SHOPPING_CART_BUTTON);
+        sleepInSecond(1);
+    }
 }

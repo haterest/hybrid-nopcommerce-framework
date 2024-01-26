@@ -19,9 +19,9 @@ public class ChromeDriverManager implements BrowserFactory {
         prefs.put("credentials_enable_service", false);
         prefs.put("profile.password_manager_enabled", false);
         prefs.put("autofill.profile_enabled", false);
+        prefs.put("autofill.credit_card_enabled", false);
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-notifications");
         options.setExperimentalOption("useAutomationExtension", false);
         options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
         options.setExperimentalOption("prefs", prefs);

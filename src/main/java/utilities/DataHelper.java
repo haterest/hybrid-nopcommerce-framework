@@ -1,5 +1,6 @@
 package utilities;
 
+import com.github.javafaker.CreditCardType;
 import com.github.javafaker.Faker;
 
 import java.util.Locale;
@@ -52,5 +53,13 @@ public class DataHelper {
 
     public String getInvalidPassword() {
         return faker.internet().password(1, 4, true, true);
+    }
+
+    public String getVisaCard() {
+        return faker.finance().creditCard(CreditCardType.VISA);
+    }
+
+    public String getZipCode() {
+        return faker.address().zipCode();
     }
 }

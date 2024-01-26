@@ -19,4 +19,6 @@ public class UserShoppingCartPageUI {
     public static final String CART_PRICE_TOTAL = "xpath=//label[text()='Total:']/parent::td/following-sibling::td/span/strong";
     public static final String LEGAL_CHECKBOX = "css=input#termsofservice";
     public static final String CHECKOUT_BUTTON = "css=button#checkout";
+    public static final String QUANTITY_TEXTBOX = "css=input.qty-input";
+    public static final String UPDATE_SHOPPING_CART_BUTTON = "xpath=//button[text()='Update shopping cart']";
 }

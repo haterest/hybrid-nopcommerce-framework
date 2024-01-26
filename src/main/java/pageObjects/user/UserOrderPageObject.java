@@ -73,4 +73,10 @@ public class UserOrderPageObject extends UserMyAccountSideBarPageObject{
         waitForElementVisible(UserOrderPageUI.TOTAL_PRICE_BILL);
         return getElementText(UserOrderPageUI.TOTAL_PRICE_BILL);
     }
+
+    public UserShoppingCartPageObject clickReOrderButton() {
+        waitForElementClickable(UserOrderPageUI.RE_ORDER_BUTTON);
+        clickToElement(UserOrderPageUI.RE_ORDER_BUTTON);
+        return PageGeneratorManager.getUserShoppingCartPage(driver);
+    }
 }

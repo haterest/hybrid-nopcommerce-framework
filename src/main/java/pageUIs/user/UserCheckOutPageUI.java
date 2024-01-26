@@ -5,7 +5,7 @@ public class UserCheckOutPageUI {
     public static final String SHIP_TO_SAME_ADDRESS_CHECKBOX = "css=input#ShipToSameAddress";
     public static final String TEXTBOX_BY_ID = "xpath=//input[@id='%s']";
     public static final String DROPDOWN_BY_ID = "xpath=//select[@id='%s']";
-    public static final String SHIP_METHOD_RADIO_BY_LABEL = "xpath=//label[text()='%s']/preceding-sibling::input";
+    public static final String RADIO_BUTTON_BY_LABEL = "xpath=//label[text()='%s']/preceding-sibling::input";
     public static final String INFOR_CHECKOUT_BY_TITLE_AND_VALUE = "xpath=//strong[text()='%s']/parent::div/following-sibling::ul/li[@class='%s']";
     public static final String INFOR_PAYMENT_METHOD = "xpath=//li[@class='payment-method']/span[@class='value']";
     public static final String INFOR_SHIPPING_METHOD = "xpath=//li[@class='shipping-method']/span[@class='value']";

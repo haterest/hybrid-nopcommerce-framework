@@ -79,6 +79,7 @@ public class UserDetailProductPageObject extends BasePage {
     }
 
     public void hoverMouseToShoppingCardMenuLink() {
+        scrollToTopPage();
         waitForElementVisible(UserDetailProductPageUI.SHOPING_CART_MENU_LINK);
         hoverMouseToElement(UserDetailProductPageUI.SHOPING_CART_MENU_LINK);
         sleepInSecond(1);

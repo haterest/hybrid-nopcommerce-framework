@@ -357,6 +357,10 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0,document.body.scrollHeight)");
     }
 
+    protected void scrollToTopPage() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, 0);");
+    }
+
     protected void navigateToUrlByJS(String url) {
         ((JavascriptExecutor) driver).executeScript("window.location = '" + url + "'");
     }

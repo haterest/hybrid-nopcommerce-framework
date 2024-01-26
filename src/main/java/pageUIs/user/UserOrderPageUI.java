@@ -14,4 +14,5 @@ public class UserOrderPageUI {
     public static final String GIFT_WRAPPING_STATUS = "css=div.selected-checkout-attributes";
     public static final String PRICE_BILL_BY_LABEL_NAME = "xpath=//label[text()='%s']/parent::td/following-sibling::td/span";
     public static final String TOTAL_PRICE_BILL = "css=td.cart-total-right>span>strong";
+    public static final String RE_ORDER_BUTTON = "xpath=//button[text()='Re-order']";
 }

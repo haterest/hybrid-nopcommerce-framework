@@ -12,4 +12,11 @@
             <class name="com.nopcommerce.user.User_08_Payment"/>
         </classes>
     </test>
+<!--    <test name="Run On FireFox" preserve-order="true">-->
+<!--        <parameter name="browserName" value="firefox"/>-->
+<!--        <classes>-->
+<!--            <class name="commons.CommonRegisterLogin"/>-->
+<!--            <class name="com.nopcommerce.user.User_08_Payment"/>-->
+<!--        </classes>-->
+<!--    </test>-->
 </suite>
