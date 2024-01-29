@@ -22,7 +22,7 @@ public class BasePage {
         this.driver = driver;
     }
 
-    protected void openPageURL(String pageURL) {
+    public void openPageURL(String pageURL) {
         driver.get(pageURL);
     }
 

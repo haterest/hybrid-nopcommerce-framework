@@ -1,6 +1,10 @@
 package pageObjects.user;
 
 import org.openqa.selenium.WebDriver;
+import pageObjects.admin.AdminCustomersPageObject;
+import pageObjects.admin.AdminDashboardPageObject;
+import pageObjects.admin.AdminLoginPageObject;
+import pageObjects.admin.AdminProductsPageObject;
 
 public class PageGeneratorManager {
     public static UserHomePageObject getUserHomePage(WebDriver driver){
@@ -71,6 +75,22 @@ public class PageGeneratorManager {
 
     public static UserOrderPageObject getUserOrderPage(WebDriver driver){
         return  new UserOrderPageObject(driver);
+    }
+
+    public static AdminLoginPageObject getAdminLoginPage(WebDriver driver){
+        return  new AdminLoginPageObject(driver);
+    }
+
+    public static AdminDashboardPageObject getAdminDashboardPage(WebDriver driver){
+        return  new AdminDashboardPageObject(driver);
+    }
+
+    public static AdminProductsPageObject getAdminProductsPage(WebDriver driver){
+        return  new AdminProductsPageObject(driver);
+    }
+
+    public static AdminCustomersPageObject getAdminCustomersPage(WebDriver driver){
+        return  new AdminCustomersPageObject(driver);
     }
 
 }
