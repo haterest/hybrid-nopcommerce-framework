@@ -29,6 +29,8 @@ public class Admin_01_Product extends BaseTest {
         priceLabel = "Price";
         stockQuantityLabel = "Stock quantity";
         publishedLabel = "Published";
+        noDataTable = "No data available in table";
+        computerDropdown = "Computers";
 
         userHomePage = PageGeneratorManager.getUserHomePage(driver);
         userHomePage.openPageURL(GlobalConstant.getGlobalConstants().getAdminPageURL());
@@ -39,7 +41,8 @@ public class Admin_01_Product extends BaseTest {
 
     @Test
     public void Product_01_Search_By_Product_name(){
-        adminProductsPage = (AdminProductsPageObject) adminDashboardPage.clickToMenuSideBarByNameAndLink(catalogMenu, productLink);
+        adminDashboardPage.clickToMenuSideBarByName(catalogMenu);
+        adminProductsPage = (AdminProductsPageObject) adminDashboardPage.clickToMenuSideBarByLink(catalogMenu, productLink);
         adminProductsPage.inputToProductNameTextbox(productName);
         adminProductsPage.clickToSearchButton();
         verifyEquals(adminProductsPage.getSizeProductName(productName), 1);
@@ -52,22 +55,61 @@ public class Admin_01_Product extends BaseTest {
 
     @Test
     public void Product_02_Search_By_Product_name_And_Parent_Category(){
+        adminProductsPage = (AdminProductsPageObject) adminDashboardPage.clickToMenuSideBarByLink(catalogMenu, productLink);
+        adminProductsPage.inputToProductNameTextbox(productName);
+        adminProductsPage.selectCategoryDropdown(computerDropdown);
+        adminProductsPage.clickToSearchButton();
+        verifyEquals(adminProductsPage.getNoDataMessage(),noDataTable);
     }
 
     @Test
     public void Product_03_Search_By_Product_name_And_Parent_Category_With_Sub_Checked(){
+        adminProductsPage = (AdminProductsPageObject) adminDashboardPage.clickToMenuSideBarByLink(catalogMenu, productLink);
+        adminProductsPage.inputToProductNameTextbox(productName);
+        adminProductsPage.selectCategoryDropdown(computerDropdown);
+        adminProductsPage.clickToSubCategoriesCheckbox();
+        adminProductsPage.clickToSearchButton();
+        verifyEquals(adminProductsPage.getSizeProductName(productName), 1);
+        verifyEquals(adminProductsPage.getProductInforByLabelName(productNameLabel), productName);
+        verifyEquals(adminProductsPage.getProductInforByLabelName(skuLabel), productSKU);
+        verifyEquals(adminProductsPage.getProductInforByLabelName(priceLabel), productPrice);
+        verifyEquals(adminProductsPage.getProductInforByLabelName(stockQuantityLabel), stockQuantity);
+        verifyTrue(adminProductsPage.isPublishedSuccessDisplayByLabelName(publishedLabel));
     }
 
     @Test
     public void Product_04_Search_By_Product_name_And_Child_Category(){
+        adminProductsPage = (AdminProductsPageObject) adminDashboardPage.clickToMenuSideBarByLink(catalogMenu, productLink);
+        adminProductsPage.inputToProductNameTextbox(productName);
+        adminProductsPage.selectCategoryDropdown("Computers >> Desktops");
+        adminProductsPage.clickToSearchButton();
+        verifyEquals(adminProductsPage.getSizeProductName(productName), 1);
+        verifyEquals(adminProductsPage.getProductInforByLabelName(productNameLabel), productName);
+        verifyEquals(adminProductsPage.getProductInforByLabelName(skuLabel), productSKU);
+        verifyEquals(adminProductsPage.getProductInforByLabelName(priceLabel), productPrice);
+        verifyEquals(adminProductsPage.getProductInforByLabelName(stockQuantityLabel), stockQuantity);
+        verifyTrue(adminProductsPage.isPublishedSuccessDisplayByLabelName(publishedLabel));
     }
 
     @Test
     public void Product_05_Search_By_Product_name_And_Manufacturer(){
+        adminProductsPage = (AdminProductsPageObject) adminDashboardPage.clickToMenuSideBarByLink(catalogMenu, productLink);
+        adminProductsPage.inputToProductNameTextbox(productName);
+        adminProductsPage.selectCategoryDropdown("All");
+        adminProductsPage.selectManufacturerDropdown("Apple");
+        adminProductsPage.clickToSearchButton();
+        verifyEquals(adminProductsPage.getNoDataMessage(),noDataTable);
     }
 
     @Test
     public void Product_06_Search_By_Product_name_And_Product_SKU(){
+        adminProductsPage = (AdminProductsPageObject) adminDashboardPage.clickToMenuSideBarByLink(catalogMenu, productLink);
+        adminProductsPage.inputToProductNameTextbox(productName);
+        adminProductsPage.inputToDirectlyProductSKUTextbox(productSKU);
+        adminProductsPage.clickGoButton();
+        verifyTrue(adminProductsPage.isDisplayedProductDetailsTitle(productName));
+        verifyEquals(adminProductsPage.getProductNameTextbox(), productName);
+        verifyEquals(adminProductsPage.getSKUProductTextbox(), productSKU);
     }
 
     @AfterClass(alwaysRun = true)
@@ -77,7 +119,8 @@ public class Admin_01_Product extends BaseTest {
 
     private WebDriver driver;
     private String adminEmail, adminPassword, productName, productSKU, productPrice, stockQuantity, catalogMenu,
-            productLink, productNameLabel, skuLabel, priceLabel, stockQuantityLabel, publishedLabel;
+            productLink, productNameLabel, skuLabel, priceLabel, stockQuantityLabel, publishedLabel, noDataTable,
+            computerDropdown;
     private UserHomePageObject userHomePage;
     private AdminLoginPageObject adminLoginPage;
     private AdminDashboardPageObject adminDashboardPage;

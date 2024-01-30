@@ -12,11 +12,10 @@ public class AdminLeftSideBarPageObject extends BasePage {
     }
 
 
-    public AdminLeftSideBarPageObject clickToMenuSideBarByNameAndLink(String nameMenu, String nameLink) {
-        waitForElementClickable(AdminLeftSideBarPageUI.MENU_SIDE_BAR_BY_NAME, nameMenu);
-        clickToElement(AdminLeftSideBarPageUI.MENU_SIDE_BAR_BY_NAME, nameMenu);
+    public AdminLeftSideBarPageObject clickToMenuSideBarByLink(String nameMenu, String nameLink) {
         waitForElementClickable(AdminLeftSideBarPageUI.MENU_SIDE_BAR_BY_NAME_AND_LINK, nameMenu, nameLink);
         clickToElement(AdminLeftSideBarPageUI.MENU_SIDE_BAR_BY_NAME_AND_LINK, nameMenu, nameLink);
+        waitForElementInvisible(AdminLeftSideBarPageUI.LOADING_ICON);
         switch (nameLink){
             case "Products":
                 return PageGeneratorManager.getAdminProductsPage(driver);
@@ -25,5 +24,11 @@ public class AdminLeftSideBarPageObject extends BasePage {
             default:
                 throw new RuntimeException("Invalid Page Name at My Account area");
         }
+    }
+
+    public void clickToMenuSideBarByName(String menuName) {
+        waitForElementClickable(AdminLeftSideBarPageUI.MENU_SIDE_BAR_BY_NAME, menuName);
+        clickToElement(AdminLeftSideBarPageUI.MENU_SIDE_BAR_BY_NAME, menuName);
+        sleepInSecond(1);
     }
 }
