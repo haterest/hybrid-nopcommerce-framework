@@ -188,7 +188,7 @@ public class BasePage {
         for (WebElement item : allItems) {
             if (item.getText().trim().equals(expectedItem)) {
                 jsExecutor = (JavascriptExecutor) driver;
-                jsExecutor.executeScript("arguments[0].scrollIntoView(true);", item);
+                jsExecutor.executeScript("arguments[0].scrollIntoView(false);", item);
                 sleepInSecond(1);
                 item.click();
                 break;
@@ -377,6 +377,11 @@ public class BasePage {
     protected void scrollToElement(String locator) {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
                 getWebElement( locator));
+    }
+
+    protected void scrollToElement(String locator, String... dynamicValues) {
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);",
+                getWebElement( getDynamicXpath(locator, dynamicValues)));
     }
 
     protected void sendkeyToElementByJS(String locator, String value) {

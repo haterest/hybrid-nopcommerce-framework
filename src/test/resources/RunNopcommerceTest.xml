@@ -9,7 +9,7 @@
         <parameter name="browserName" value="chrome"/>
         <classes>
 <!--            <class name="commons.CommonRegisterLogin"/>-->
-            <class name="com.nopcommerce.admin.Admin_01_Product"/>
+            <class name="com.nopcommerce.admin.Admin_02_Customer"/>
         </classes>
     </test>
 <!--    <test name="Run On FireFox" preserve-order="true">-->

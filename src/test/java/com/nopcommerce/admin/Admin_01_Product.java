@@ -117,12 +117,12 @@ public class Admin_01_Product extends BaseTest {
         closeBrowserDriver();
     }
 
-    private WebDriver driver;
-    private String adminEmail, adminPassword, productName, productSKU, productPrice, stockQuantity, catalogMenu,
+    WebDriver driver;
+    String adminEmail, adminPassword, productName, productSKU, productPrice, stockQuantity, catalogMenu,
             productLink, productNameLabel, skuLabel, priceLabel, stockQuantityLabel, publishedLabel, noDataTable,
             computerDropdown;
-    private UserHomePageObject userHomePage;
-    private AdminLoginPageObject adminLoginPage;
+    UserHomePageObject userHomePage;
+    AdminLoginPageObject adminLoginPage;
     private AdminDashboardPageObject adminDashboardPage;
     private AdminProductsPageObject adminProductsPage;
 }
