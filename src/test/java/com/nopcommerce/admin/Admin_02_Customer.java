@@ -118,6 +118,7 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage = adminDetailCustomerPage.clickBackToCustomerListLink();
         adminCustomersPage.clickToDeleteRegisted();
         adminCustomersPage.selectItemInCustomerRolesMenu(guestOption);
+        adminCustomersPage.inputToTextboxById(searchEmailID, email);
         adminCustomersPage.clickSearchButton();
         verifyEquals(adminCustomersPage.getFirstRowCustomerByName(nameTable), firstName + " " + lastName);
         verifyEquals(adminCustomersPage.getFirstRowCustomerByName(companyNameTable), companyName);

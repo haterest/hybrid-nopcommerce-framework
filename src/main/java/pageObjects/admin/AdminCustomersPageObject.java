@@ -66,10 +66,4 @@ public class AdminCustomersPageObject extends AdminLeftSideBarPageObject{
         waitForElementVisible(AdminCustomersPageUI.SUCCESSFUL_MESSAGE);
         return getElementText(AdminCustomersPageUI.SUCCESSFUL_MESSAGE).trim().substring(1).trim();
     }
-
-    public boolean isDisplayTableValue(String value) {
-        scrollToElement(AdminCustomersPageUI.CUSTOMER_TABLE);
-        waitForElementVisible(AdminCustomersPageUI.VALUE_CUSTOMER_BY_TEXT, value);
-        return isElementDisplayed(AdminCustomersPageUI.VALUE_CUSTOMER_BY_TEXT, value);
-    }
 }

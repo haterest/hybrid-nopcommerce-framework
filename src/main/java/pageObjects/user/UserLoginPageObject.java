@@ -1,7 +1,6 @@
 package pageObjects.user;
 
 import commons.BasePage;
-import commons.BasePageUI;
 import org.openqa.selenium.WebDriver;
 import pageUIs.user.UserLoginPageUI;
 
@@ -35,13 +34,4 @@ public class UserLoginPageObject extends BasePage {
         waitForElementVisible(UserLoginPageUI.ERROR_ACCOUNT_MESSAGE);
         return getElementText(UserLoginPageUI.ERROR_ACCOUNT_MESSAGE);
     }
-
-
-//    public UserCustomerPageObject openMyAccountLink() {
-//        String myAccountLink = getElementAttribute(BasePageUI.MY_ACCOUNT_MENU_LINK, "href");
-//        openPageURL(myAccountLink);
-//        return PageGeneratorManager.getUserCustomerPage(driver);
-//    }
-
-
 }

@@ -29,8 +29,4 @@ public class UserDesktopPageObject extends BasePage {
         return getElementText(UserDesktopPageUI.SUCCESSFUL_MESSAGE);
     }
 
-    public void closeSuccessfulMessage() {
-        waitForElementClickable(UserDesktopPageUI.CLOSE_SUCCESSFUL_MESSAGE_BUTTON);
-        clickToElement(UserDesktopPageUI.CLOSE_SUCCESSFUL_MESSAGE_BUTTON);
-    }
 }
