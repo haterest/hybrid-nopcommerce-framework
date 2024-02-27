@@ -17,12 +17,12 @@ public class UserNotebooksPageObject extends BasePage {
     }
 
     public boolean isProductNameSortedByAToZ() {
-        waitForAllElementsVisible(UserNotebooksPageUI.PRODUCT_TITLE_LINK);
-        return isNameSortByAscending(UserNotebooksPageUI.PRODUCT_TITLE_LINK);
+        waitForAllElementsVisible(UserNotebooksPageUI.PRODUCT_TITLE_LINK_LIST);
+        return isNameSortByAscending(UserNotebooksPageUI.PRODUCT_TITLE_LINK_LIST);
     }
     public boolean isProductNameSortedByZToA() {
-        waitForAllElementsVisible(UserNotebooksPageUI.PRODUCT_TITLE_LINK);
-        return isNameSortByDescending(UserNotebooksPageUI.PRODUCT_TITLE_LINK);
+        waitForAllElementsVisible(UserNotebooksPageUI.PRODUCT_TITLE_LINK_LIST);
+        return isNameSortByDescending(UserNotebooksPageUI.PRODUCT_TITLE_LINK_LIST);
     }
 
     public boolean isProductPriceSortedByLowToHigh() {
@@ -42,8 +42,8 @@ public class UserNotebooksPageObject extends BasePage {
     }
 
     public boolean isProductDisplayFollowNumber(String numberDropdown) {
-        waitForAllElementsVisible(UserNotebooksPageUI.PRODUCT_TITLE_LINK);
-        int size = getElementsSize(UserNotebooksPageUI.PRODUCT_TITLE_LINK);
+        waitForAllElementsVisible(UserNotebooksPageUI.PRODUCT_TITLE_LINK_LIST);
+        int size = getElementsSize(UserNotebooksPageUI.PRODUCT_TITLE_LINK_LIST);
         return size <= Integer.parseInt(numberDropdown);
     }
 
@@ -72,8 +72,8 @@ public class UserNotebooksPageObject extends BasePage {
     }
 
     public UserDetailProductPageObject clickToDetaiProductByName(String productName) {
-        waitForElementClickable(UserNotebooksPageUI.PRODUCT_TITLE_LINK, productName);
-        clickToElement(UserNotebooksPageUI.PRODUCT_TITLE_LINK, productName);
+        waitForElementClickable(UserNotebooksPageUI.PRODUCT_TITLE_LINK_BY_NAME, productName);
+        clickToElement(UserNotebooksPageUI.PRODUCT_TITLE_LINK_BY_NAME, productName);
         return PageGeneratorManager.getUserDetailProductPage(driver);
     }
 }

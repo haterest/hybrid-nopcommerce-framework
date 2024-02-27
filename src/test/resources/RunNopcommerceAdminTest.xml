@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="NopCommerce">
+    <parameter name="envName" value="local"/>
+    <parameter name="severName" value="dev"/>
+    <listeners>
+        <listener class-name="commons.MethodListener"/>
+    </listeners>
+    <test name="Run On Chrome" preserve-order="true">
+        <parameter name="browserName" value="chrome"/>
+        <packages>
+            <package name="com.nopcommerce.admin" />
+        </packages>
+    </test>
+</suite>

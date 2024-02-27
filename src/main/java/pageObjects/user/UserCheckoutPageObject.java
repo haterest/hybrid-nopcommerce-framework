@@ -20,9 +20,9 @@ public class UserCheckoutPageObject extends BasePage{
         sendKeyToElement(UserCheckOutPageUI.TEXTBOX_BY_ID, keyToSend, textboxID);
     }
 
-    public void selectDropdownByIDAndName(String dropdownID, String countryName) {
+    public void selectDropdownByIDAndName(String dropdownID, String name) {
         waitForElementVisible(UserCheckOutPageUI.DROPDOWN_BY_ID, dropdownID);
-        selectItemInDefaultDropDown(UserCheckOutPageUI.DROPDOWN_BY_ID, countryName, dropdownID);
+        selectItemInDefaultDropDown(UserCheckOutPageUI.DROPDOWN_BY_ID, name, dropdownID);
     }
 
     public void clickButtonByID(String buttonID) {

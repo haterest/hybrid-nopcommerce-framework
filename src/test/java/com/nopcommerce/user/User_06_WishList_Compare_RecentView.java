@@ -118,6 +118,14 @@ public class User_06_WishList_Compare_RecentView extends BaseTest {
         verifyTrue(userRecentlyProductsPage.isDisplayedProductByName(samsungPremiumProduct));
         verifyTrue(userRecentlyProductsPage.isDisplayedProductByName(lenovoThinkpadProduct));
         verifyTrue(userRecentlyProductsPage.isDisplayedProductByName(hpEnvyProduct));
+        userRecentlyProductsPage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
+                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.DESKTOPS_SUB_CATEGORY);
+        userDesktopPage = PageGeneratorManager.getUserDesktopPage(driver);
+        userDetailProductPage = userDesktopPage.openDetailProductPageByName(Lenovo600Product);
+        userDetailProductPage.hoverMouseToShoppingCardMenuLink();
+        userShoppingCartPage = userDetailProductPage.clickGoToCartButton();
+        userShoppingCartPage.clickRemoveProductButton();
+        verifyEquals(userShoppingCartPage.getNoProductMessage(),"Your Shopping Cart is empty!");
     }
 
     @AfterClass(alwaysRun = true)

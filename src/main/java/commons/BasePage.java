@@ -528,10 +528,11 @@ public class BasePage {
     public void openCategoriesPageByName(String position, String categoryName, String productName) {
         switch (position){
             case "HeaderMenu" :
+                scrollToTopPage();
                 waitForElementVisible(BasePageUI.HEADER_MENU_LINK, categoryName);
                 hoverMouseToElement(BasePageUI.HEADER_MENU_LINK, categoryName);
-                waitForElementClickable(BasePageUI.HEADER_MENU_LINK, productName);
-                clickToElement(BasePageUI.HEADER_MENU_LINK, productName);
+                sleepInSecond(1);
+                clickToElementByJS(BasePageUI.HEADER_MENU_LINK, productName);
                 break;
             case "SideBarMenu" :
                 waitForElementClickable(BasePageUI.SIDE_BAR_MENU_LINK, categoryName);

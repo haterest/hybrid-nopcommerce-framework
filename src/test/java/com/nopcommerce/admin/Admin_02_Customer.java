@@ -354,10 +354,10 @@ public class Admin_02_Customer extends BaseTest {
             firstNameTable, lastNameTable, emailTable, phoneTable, addressTable, deleteTable, germanyCountry,
             cityEdited, address1Edited, address2Edited, zipPostalCodeEdited, phoneNumberEdited;
     private WebDriver driver;
-    private DataHelper dataFaker;
-    private String adminEmail, adminPassword;
-    private UserHomePageObject userHomePage;
-    private AdminLoginPageObject adminLoginPage;
+    DataHelper dataFaker;
+    String adminEmail, adminPassword;
+    UserHomePageObject userHomePage;
+    AdminLoginPageObject adminLoginPage;
     private AdminDashboardPageObject adminDashboardPage;
     private AdminCustomersPageObject adminCustomersPage;
     private AdminDetailCustomerPageObject adminDetailCustomerPage;

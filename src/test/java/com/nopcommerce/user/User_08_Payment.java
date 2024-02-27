@@ -97,11 +97,11 @@ public class User_08_Payment extends BaseTest {
         userLoginPage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY, ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.NOTEBOOKS_SUB_CATEGORY);
         userNotebooksPage = PageGeneratorManager.getUserNotebooksPage(driver);
         userDetailProductPage = userNotebooksPage.clickToDetaiProductByName(appleMacProduct);
+        userDetailProductPage.clickAddToCartButton();
+        verifyEquals(userDetailProductPage.getSuccessfulMessageDisplayed(), successCartMess);
         unitPrice = userDetailProductPage.getPriceProduct();
         totalQuantity = userDetailProductPage.getQuantityProductDetail();
         totalPrice = userDetailProductPage.getTotalPriceProductDetail(unitPrice, totalQuantity);
-        userDetailProductPage.clickAddToCartButton();
-        verifyEquals(userDetailProductPage.getSuccessfulMessageDisplayed(), successCartMess);
         userDetailProductPage.closeSuccessfulMessage();
         userDetailProductPage.hoverMouseToShoppingCardMenuLink();
         userShoppingCartPage = userDetailProductPage.clickGoToCartButton();
@@ -261,6 +261,8 @@ public class User_08_Payment extends BaseTest {
         userCheckoutPage.selectDropdownByIDAndName("CreditCardType", "Visa");
         userCheckoutPage.inputToTextBoxByID("CardholderName", dataFaker.getFullName());
         userCheckoutPage.inputToTextBoxByID("CardNumber", dataFaker.getVisaCard());
+        userCheckoutPage.selectDropdownByIDAndName("ExpireMonth", "12");
+        userCheckoutPage.selectDropdownByIDAndName("ExpireYear", "2035");
         userCheckoutPage.inputToTextBoxByID("CardCode", cardCode);
         userCheckoutPage.clickButtonByID(paymentInfoButtonID);
 
