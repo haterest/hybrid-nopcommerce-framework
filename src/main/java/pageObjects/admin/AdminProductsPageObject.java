@@ -82,4 +82,20 @@ public class AdminProductsPageObject extends AdminLeftSideBarPageObject{
         waitForElementVisible(AdminProductsPageUI.DETAIL_SKU_TEXTBOX);
         return getElementAttribute(AdminProductsPageUI.DETAIL_SKU_TEXTBOX, "value");
     }
+
+    public void clickToSearchProductTab() {
+        if (isElementUndisplayed(AdminProductsPageUI.SEARCH_BUTTON)){
+            waitForElementClickable(AdminProductsPageUI.SEARCH_PRODUCT_TAB);
+            clickToElement(AdminProductsPageUI.SEARCH_PRODUCT_TAB);
+            waitForElementInvisible(AdminProductsPageUI.LOADING_ICON);
+        }
+    }
+
+    public void clickToProductInfoTab() {
+        if (isElementUndisplayed(AdminProductsPageUI.DETAIL_PRODUCT_NAME_TEXTBOX)){
+            waitForElementClickable(AdminProductsPageUI.PRODUCT_INFO_TAB);
+            clickToElement(AdminProductsPageUI.PRODUCT_INFO_TAB);
+            waitForElementInvisible(AdminProductsPageUI.LOADING_ICON);
+        }
+    }
 }

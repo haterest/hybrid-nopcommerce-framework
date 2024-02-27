@@ -92,6 +92,7 @@ public class Admin_02_Customer extends BaseTest {
     public void Customer_01_Create_New_Customer(){
         adminDashboardPage.clickToMenuSideBarByName(customerMenu);
         adminCustomersPage = (AdminCustomersPageObject) adminDashboardPage.clickToMenuSideBarByLink(customerMenu, customerMenu);
+        adminCustomersPage.clickToSearchCustomerTab();
         adminDetailCustomerPage = adminCustomersPage.clickAddNewButton();
         verifyTrue(adminDetailCustomerPage.isDisplayedAddNewCustomerPage());
         adminDetailCustomerPage.inputToTextBoxById(emailID, email);
@@ -127,6 +128,7 @@ public class Admin_02_Customer extends BaseTest {
     @Test
     public void Customer_02_Search_Customer_With_Email(){
         adminCustomersPage = (AdminCustomersPageObject) adminDashboardPage.clickToMenuSideBarByLink(customerMenu, customerMenu);
+        adminCustomersPage.clickToSearchCustomerTab();
         adminCustomersPage.clickToDeleteRegisted();
         adminCustomersPage.selectItemInCustomerRolesMenu(guestOption);
         adminCustomersPage.inputToTextboxById(searchEmailID, email);
@@ -139,6 +141,7 @@ public class Admin_02_Customer extends BaseTest {
     @Test
     public void Customer_03_Search_Customer_With_FirstName_And_LastName(){
         adminCustomersPage = (AdminCustomersPageObject) adminDashboardPage.clickToMenuSideBarByLink(customerMenu, customerMenu);
+        adminCustomersPage.clickToSearchCustomerTab();
         adminCustomersPage.clickToDeleteRegisted();
         adminCustomersPage.selectItemInCustomerRolesMenu(guestOption);
         adminCustomersPage.inputToTextboxById(searchFirstNameID, firstName);
@@ -152,6 +155,7 @@ public class Admin_02_Customer extends BaseTest {
     @Test
     public void Customer_04_Search_Customer_With_Company(){
         adminCustomersPage = (AdminCustomersPageObject) adminDashboardPage.clickToMenuSideBarByLink(customerMenu, customerMenu);
+        adminCustomersPage.clickToSearchCustomerTab();
         adminCustomersPage.clickToDeleteRegisted();
         adminCustomersPage.selectItemInCustomerRolesMenu(guestOption);
         adminCustomersPage.inputToTextboxById(searchCompanyID, companyName);
@@ -164,6 +168,7 @@ public class Admin_02_Customer extends BaseTest {
     @Test
     public void Customer_05_Search_Customer_With_Full_Data(){
         adminCustomersPage = (AdminCustomersPageObject) adminDashboardPage.clickToMenuSideBarByLink(customerMenu, customerMenu);
+        adminCustomersPage.clickToSearchCustomerTab();
         adminCustomersPage.clickToDeleteRegisted();
         adminCustomersPage.selectItemInCustomerRolesMenu(guestOption);
         adminCustomersPage.inputToTextboxById(searchEmailID, email);
@@ -181,6 +186,7 @@ public class Admin_02_Customer extends BaseTest {
     @Test
     public void Customer_06_Edit_Customer(){
         adminCustomersPage = (AdminCustomersPageObject) adminDashboardPage.clickToMenuSideBarByLink(customerMenu, customerMenu);
+        adminCustomersPage.clickToSearchCustomerTab();
         adminCustomersPage.clickToDeleteRegisted();
         adminCustomersPage.selectItemInCustomerRolesMenu(guestOption);
         adminCustomersPage.inputToTextboxById(searchEmailID, email);
@@ -227,6 +233,7 @@ public class Admin_02_Customer extends BaseTest {
     @Test
     public void Customer_07_Add_New_Address_In_Customer_Detail(){
         adminCustomersPage = (AdminCustomersPageObject) adminDashboardPage.clickToMenuSideBarByLink(customerMenu, customerMenu);
+        adminCustomersPage.clickToSearchCustomerTab();
         adminCustomersPage.inputToTextboxById(searchEmailID, emailEdited);
         adminCustomersPage.inputToTextboxById(searchFirstNameID, firstNameEdited);
         adminCustomersPage.inputToTextboxById(searchLastNameID, lastNameEdited);
@@ -275,6 +282,7 @@ public class Admin_02_Customer extends BaseTest {
     @Test
     public void Customer_08_Edit_Address_In_Customer_Detail(){
         adminCustomersPage = (AdminCustomersPageObject) adminDashboardPage.clickToMenuSideBarByLink(customerMenu, customerMenu);
+        adminCustomersPage.clickToSearchCustomerTab();
         adminCustomersPage.inputToTextboxById(searchEmailID, emailEdited);
         adminCustomersPage.inputToTextboxById(searchFirstNameID, firstNameEdited);
         adminCustomersPage.inputToTextboxById(searchLastNameID, lastNameEdited);
@@ -324,6 +332,7 @@ public class Admin_02_Customer extends BaseTest {
     @Test
     public void Customer_09_Delete_Address_In_Customer_Detail(){
         adminCustomersPage = (AdminCustomersPageObject) adminDashboardPage.clickToMenuSideBarByLink(customerMenu, customerMenu);
+        adminCustomersPage.clickToSearchCustomerTab();
         adminCustomersPage.inputToTextboxById(searchEmailID, emailEdited);
         adminCustomersPage.inputToTextboxById(searchFirstNameID, firstNameEdited);
         adminCustomersPage.inputToTextboxById(searchLastNameID, lastNameEdited);

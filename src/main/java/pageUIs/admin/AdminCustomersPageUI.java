@@ -17,4 +17,6 @@ public class AdminCustomersPageUI {
     public static final String MONTH_OF_BIRTH_DROPDOWN = "css=select#SearchMonthOfBirth";
     public static final String DAY_OF_BIRTH_DROPDOWN = "css=select#SearchDayOfBirth";
     public static final String SUCCESSFUL_MESSAGE = "xpath=//div[starts-with(@class,'alert alert-success')]";
+    public static final String SEARCH_CUSTOMER_TAB = "xpath=//div[text()='Search']/parent::div[@data-hideattribute" +
+            "='CustomerListPage.HideSearchBlock']";
 }

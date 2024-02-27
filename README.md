@@ -23,7 +23,9 @@ The project will using Google Chrome by default if no other browser is stated.
 * Safari (only MAC OS) `mvn clean test -DbrowserName=safari`
 > Due to bug with the Firefox browser so don't run it with Firefox
 
-:white_circle: Using test suite for running the test by following the project path `\src\test\resources\RunNopcommerceTest.xml`
+:white_circle: Using test suite for running the test by following the project path:
+* Admin TestCase: `src/test/resources/RunNopcommerceAdminTest.xml`
+* User TestCase: `src/test/resources/RunNopcommerceUserTest.xml`
 
 ---
 

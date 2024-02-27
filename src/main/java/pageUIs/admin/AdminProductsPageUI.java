@@ -19,4 +19,7 @@ public class AdminProductsPageUI {
             "clearfix']/h1[contains(text(),'%s')]";
     public static final String DETAIL_PRODUCT_NAME_TEXTBOX = "css=input#Name";
     public static final String DETAIL_SKU_TEXTBOX = "css=input#Sku";
+    public static final String PRODUCT_INFO_TAB = "xpath=//div[text()='Product info']/parent::div/parent::div";
+    public static final String SEARCH_PRODUCT_TAB = "xpath=//div[text()='Search']/parent::div[@data-hideattribute" +
+            "='ProductListPage.HideSearchBlock']";
 }

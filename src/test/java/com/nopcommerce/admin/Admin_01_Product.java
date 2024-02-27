@@ -43,6 +43,7 @@ public class Admin_01_Product extends BaseTest {
     public void Product_01_Search_By_Product_name(){
         adminDashboardPage.clickToMenuSideBarByName(catalogMenu);
         adminProductsPage = (AdminProductsPageObject) adminDashboardPage.clickToMenuSideBarByLink(catalogMenu, productLink);
+        adminProductsPage.clickToSearchProductTab();
         adminProductsPage.inputToProductNameTextbox(productName);
         adminProductsPage.clickToSearchButton();
         verifyEquals(adminProductsPage.getSizeProductName(productName), 1);
@@ -56,6 +57,7 @@ public class Admin_01_Product extends BaseTest {
     @Test
     public void Product_02_Search_By_Product_name_And_Parent_Category(){
         adminProductsPage = (AdminProductsPageObject) adminDashboardPage.clickToMenuSideBarByLink(catalogMenu, productLink);
+        adminProductsPage.clickToSearchProductTab();
         adminProductsPage.inputToProductNameTextbox(productName);
         adminProductsPage.selectCategoryDropdown(computerDropdown);
         adminProductsPage.clickToSearchButton();
@@ -65,6 +67,7 @@ public class Admin_01_Product extends BaseTest {
     @Test
     public void Product_03_Search_By_Product_name_And_Parent_Category_With_Sub_Checked(){
         adminProductsPage = (AdminProductsPageObject) adminDashboardPage.clickToMenuSideBarByLink(catalogMenu, productLink);
+        adminProductsPage.clickToSearchProductTab();
         adminProductsPage.inputToProductNameTextbox(productName);
         adminProductsPage.selectCategoryDropdown(computerDropdown);
         adminProductsPage.clickToSubCategoriesCheckbox();
@@ -80,6 +83,7 @@ public class Admin_01_Product extends BaseTest {
     @Test
     public void Product_04_Search_By_Product_name_And_Child_Category(){
         adminProductsPage = (AdminProductsPageObject) adminDashboardPage.clickToMenuSideBarByLink(catalogMenu, productLink);
+        adminProductsPage.clickToSearchProductTab();
         adminProductsPage.inputToProductNameTextbox(productName);
         adminProductsPage.selectCategoryDropdown("Computers >> Desktops");
         adminProductsPage.clickToSearchButton();
@@ -94,6 +98,7 @@ public class Admin_01_Product extends BaseTest {
     @Test
     public void Product_05_Search_By_Product_name_And_Manufacturer(){
         adminProductsPage = (AdminProductsPageObject) adminDashboardPage.clickToMenuSideBarByLink(catalogMenu, productLink);
+        adminProductsPage.clickToSearchProductTab();
         adminProductsPage.inputToProductNameTextbox(productName);
         adminProductsPage.selectCategoryDropdown("All");
         adminProductsPage.selectManufacturerDropdown("Apple");
@@ -104,9 +109,11 @@ public class Admin_01_Product extends BaseTest {
     @Test
     public void Product_06_Search_By_Product_name_And_Product_SKU(){
         adminProductsPage = (AdminProductsPageObject) adminDashboardPage.clickToMenuSideBarByLink(catalogMenu, productLink);
+        adminProductsPage.clickToSearchProductTab();
         adminProductsPage.inputToProductNameTextbox(productName);
         adminProductsPage.inputToDirectlyProductSKUTextbox(productSKU);
         adminProductsPage.clickGoButton();
+        adminProductsPage.clickToProductInfoTab();
         verifyTrue(adminProductsPage.isDisplayedProductDetailsTitle(productName));
         verifyEquals(adminProductsPage.getProductNameTextbox(), productName);
         verifyEquals(adminProductsPage.getSKUProductTextbox(), productSKU);

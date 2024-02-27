@@ -3,6 +3,7 @@ package pageObjects.admin;
 import org.openqa.selenium.WebDriver;
 import pageObjects.user.PageGeneratorManager;
 import pageUIs.admin.AdminCustomersPageUI;
+import pageUIs.admin.AdminProductsPageUI;
 
 public class AdminCustomersPageObject extends AdminLeftSideBarPageObject{
     public AdminCustomersPageObject(WebDriver driver) {
@@ -65,5 +66,13 @@ public class AdminCustomersPageObject extends AdminLeftSideBarPageObject{
     public Object getSuccessfulMessage() {
         waitForElementVisible(AdminCustomersPageUI.SUCCESSFUL_MESSAGE);
         return getElementText(AdminCustomersPageUI.SUCCESSFUL_MESSAGE).trim().substring(1).trim();
+    }
+
+    public void clickToSearchCustomerTab() {
+        if (isElementUndisplayed(AdminCustomersPageUI.SEARCH_BUTTON)){
+            waitForElementClickable(AdminCustomersPageUI.SEARCH_CUSTOMER_TAB);
+            clickToElement(AdminCustomersPageUI.SEARCH_CUSTOMER_TAB);
+            waitForElementInvisible(AdminCustomersPageUI.LOADING_ICON);
+        }
     }
 }
