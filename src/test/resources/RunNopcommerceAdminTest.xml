@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<suite name="NopCommerce">
+<suite name="NopCommerce Admin Test">
     <parameter name="envName" value="local"/>
     <parameter name="severName" value="dev"/>
     <listeners>
         <listener class-name="commons.MethodListener"/>
+        <listener class-name="reportConfig.ExtentTestListener"/>
     </listeners>
     <test name="Run On Chrome" preserve-order="true">
         <parameter name="browserName" value="chrome"/>
