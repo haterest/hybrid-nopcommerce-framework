@@ -5,7 +5,6 @@ import commons.CommonRegisterLogin;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import pageObjects.user.*;
-import utilities.ElementData;
 
 public class User_06_WishList_Compare_RecentView extends BaseTest {
     @Parameters({"envName", "severName", "browserName", "osName", "ipAddress", "portNumber"})
@@ -26,7 +25,7 @@ public class User_06_WishList_Compare_RecentView extends BaseTest {
         compareProductMessage = "The product has been added to your product comparison";
 
         userHomePage = PageGeneratorManager.getUserHomePage(driver);
-        userHomePage.clickToMenuLinkByName(ElementData.BasePage.LOGIN_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName("Log in");
         userLoginPage = PageGeneratorManager.getUserLoginPage(driver);
         userLoginPage.setCookies(CommonRegisterLogin.loggedCookies);
         userLoginPage.refreshCurrentPage();
@@ -34,8 +33,7 @@ public class User_06_WishList_Compare_RecentView extends BaseTest {
 
     @Test
     public void Wishlist_Compare_RecentView_01_Add_Product_To_Wishlist(){
-        userLoginPage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
-                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.DESKTOPS_SUB_CATEGORY);
+        userLoginPage.openCategoriesPageByName("HeaderMenu", "Computers", "Desktops");
         userDesktopPage = PageGeneratorManager.getUserDesktopPage(driver);
         userDetailProductPage = userDesktopPage.openDetailProductPageByName(Lenovo600Product);
         userDetailProductPage.clickToAddToWishListButton();
@@ -62,8 +60,7 @@ public class User_06_WishList_Compare_RecentView extends BaseTest {
     @Test
     public void Wishlist_Compare_RecentView_03_Remove_Product_Cart_In_WishList_Page(){
         userWishListPage.refreshCurrentPage();
-        userWishListPage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
-                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.DESKTOPS_SUB_CATEGORY);
+        userWishListPage.openCategoriesPageByName("HeaderMenu", "Computers", "Desktops");
         userDesktopPage = PageGeneratorManager.getUserDesktopPage(driver);
         userDetailProductPage = userDesktopPage.openDetailProductPageByName(DigitalVanquish3Product);
         userDetailProductPage.clickToAddToWishListButton();
@@ -77,14 +74,13 @@ public class User_06_WishList_Compare_RecentView extends BaseTest {
     @Test
     public void Wishlist_Compare_RecentView_04_Add_Product_To_Compare(){
         userWishListPage.refreshCurrentPage();
-        userWishListPage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
-                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.DESKTOPS_SUB_CATEGORY);
+        userWishListPage.openCategoriesPageByName("HeaderMenu", "Computers", "Desktops");
         userDesktopPage = PageGeneratorManager.getUserDesktopPage(driver);
         userDesktopPage.clickAddToCompareListButtonByName(DigitalVanquish3Product);
         verifyEquals(userDesktopPage.getSuccessfulMessageDisplayed(),compareProductMessage);
         userDesktopPage.clickAddToCompareListButtonByName(Lenovo600Product);
         verifyEquals(userDesktopPage.getSuccessfulMessageDisplayed(),compareProductMessage);
-        userDesktopPage.clickToLinkFooterByName(ElementData.FooterPage.COMPARE_PRODUCTS_LIST_LINK);
+        userDesktopPage.clickToLinkFooterByName("Compare products list");
         userCompareProductsPage = PageGeneratorManager.getUserCompareProductsPage(driver);
         verifyTrue(userCompareProductsPage.isDisplayedNameByProductName(DigitalVanquish3Product));
         verifyTrue(userCompareProductsPage.isDisplayedRemoveButtonByProductName(DigitalVanquish3Product));
@@ -100,8 +96,7 @@ public class User_06_WishList_Compare_RecentView extends BaseTest {
 
     @Test
     public void Wishlist_Compare_RecentView_05_Recently_Viewd_Products(){
-        userCompareProductsPage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
-                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.NOTEBOOKS_SUB_CATEGORY);
+        userCompareProductsPage.openCategoriesPageByName("HeaderMenu", "Computers", "Notebooks");
         userNotebooksPage = PageGeneratorManager.getUserNotebooksPage(driver);
         userDetailProductPage = userNotebooksPage.clickToDetaiProductByName(appleMacbookProduct);
         userNotebooksPage = userDetailProductPage.backToNotebooksProductPage();
@@ -113,13 +108,12 @@ public class User_06_WishList_Compare_RecentView extends BaseTest {
         userNotebooksPage = userDetailProductPage.backToNotebooksProductPage();
         userDetailProductPage = userNotebooksPage.clickToDetaiProductByName(samsungPremiumProduct);
         userNotebooksPage = userDetailProductPage.backToNotebooksProductPage();
-        userNotebooksPage.clickToLinkFooterByName(ElementData.FooterPage.RECENTLY_VIEWED_PRODUCTS_LINK);
+        userNotebooksPage.clickToLinkFooterByName("Recently viewed products");
         userRecentlyProductsPage = PageGeneratorManager.getUserRecentlyProductsPage(driver);
         verifyTrue(userRecentlyProductsPage.isDisplayedProductByName(samsungPremiumProduct));
         verifyTrue(userRecentlyProductsPage.isDisplayedProductByName(lenovoThinkpadProduct));
         verifyTrue(userRecentlyProductsPage.isDisplayedProductByName(hpEnvyProduct));
-        userRecentlyProductsPage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
-                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.DESKTOPS_SUB_CATEGORY);
+        userRecentlyProductsPage.openCategoriesPageByName("HeaderMenu", "Computers", "Desktops");
         userDesktopPage = PageGeneratorManager.getUserDesktopPage(driver);
         userDetailProductPage = userDesktopPage.openDetailProductPageByName(Lenovo600Product);
         userDetailProductPage.hoverMouseToShoppingCardMenuLink();

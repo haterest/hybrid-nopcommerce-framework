@@ -6,7 +6,6 @@ import org.testng.annotations.*;
 import pageObjects.user.PageGeneratorManager;
 import pageObjects.user.UserHomePageObject;
 import pageObjects.user.UserSearchPageObject;
-import utilities.ElementData;
 
 
 public class User_04_Search_Advanced_Search extends BaseTest {
@@ -28,7 +27,7 @@ public class User_04_Search_Advanced_Search extends BaseTest {
 
     @Test
     public void Search_01_Empty_Data(){
-        userHomePage.clickToLinkFooterByName(ElementData.FooterPage.SEARCH_LINK);
+        userHomePage.clickToLinkFooterByName("Search");
         userSearchPage = PageGeneratorManager.getUserSearchPage(driver);
         userSearchPage.clickToSearchButton();
         verifyEquals(userSearchPage.getSearchWarningText(), "Search term minimum length is 3 characters");
@@ -36,7 +35,7 @@ public class User_04_Search_Advanced_Search extends BaseTest {
 
     @Test
     public void Search_02_Data_Not_Exist(){
-        userHomePage.clickToLinkFooterByName(ElementData.FooterPage.SEARCH_LINK);
+        userHomePage.clickToLinkFooterByName("Search");
         userSearchPage = PageGeneratorManager.getUserSearchPage(driver);
         userSearchPage.inputToSearchKeywordTextbox("Macbook Pro 2050");
         userSearchPage.clickToSearchButton();
@@ -45,7 +44,7 @@ public class User_04_Search_Advanced_Search extends BaseTest {
 
     @Test
     public void Search_03_Search_With_Implicit_Product_Name(){
-        userHomePage.clickToLinkFooterByName(ElementData.FooterPage.SEARCH_LINK);
+        userHomePage.clickToLinkFooterByName("Search");
         userSearchPage = PageGeneratorManager.getUserSearchPage(driver);
         userSearchPage.inputToSearchKeywordTextbox(keywordImplicitSearch);
         userSearchPage.clickToSearchButton();
@@ -55,7 +54,7 @@ public class User_04_Search_Advanced_Search extends BaseTest {
 
     @Test
     public void Search_04_Search_With_Explicit_Product_Name(){
-        userHomePage.clickToLinkFooterByName(ElementData.FooterPage.SEARCH_LINK);
+        userHomePage.clickToLinkFooterByName("Search");
         userSearchPage = PageGeneratorManager.getUserSearchPage(driver);
         userSearchPage.inputToSearchKeywordTextbox(keywordExplicitSearch);
         userSearchPage.clickToSearchButton();
@@ -65,7 +64,7 @@ public class User_04_Search_Advanced_Search extends BaseTest {
 
     @Test
     public void Search_05_Advanced_Search_Parent_Categories(){
-        userHomePage.clickToLinkFooterByName(ElementData.FooterPage.SEARCH_LINK);
+        userHomePage.clickToLinkFooterByName("Search");
         userSearchPage = PageGeneratorManager.getUserSearchPage(driver);
         userSearchPage.inputToSearchKeywordTextbox(keywordAdvancedSearch);
         userSearchPage.clickToAdvancedSearchCheckbox();
@@ -76,7 +75,7 @@ public class User_04_Search_Advanced_Search extends BaseTest {
 
     @Test
     public void Search_06_Advanced_Search_Sub_Categories(){
-        userHomePage.clickToLinkFooterByName(ElementData.FooterPage.SEARCH_LINK);
+        userHomePage.clickToLinkFooterByName("Search");
         userSearchPage = PageGeneratorManager.getUserSearchPage(driver);
         userSearchPage.inputToSearchKeywordTextbox(keywordAdvancedSearch);
         userSearchPage.clickToAdvancedSearchCheckbox();
@@ -89,7 +88,7 @@ public class User_04_Search_Advanced_Search extends BaseTest {
 
     @Test
     public void Search_07_Advanced_Search_Incorrect_Manufacturer(){
-        userHomePage.clickToLinkFooterByName(ElementData.FooterPage.SEARCH_LINK);
+        userHomePage.clickToLinkFooterByName("Search");
         userSearchPage = PageGeneratorManager.getUserSearchPage(driver);
         userSearchPage.inputToSearchKeywordTextbox(keywordAdvancedSearch);
         userSearchPage.clickToAdvancedSearchCheckbox();
@@ -102,7 +101,7 @@ public class User_04_Search_Advanced_Search extends BaseTest {
 
     @Test
     public void Search_08_Advanced_Search_Correct_Manufacturer(){
-        userHomePage.clickToLinkFooterByName(ElementData.FooterPage.SEARCH_LINK);
+        userHomePage.clickToLinkFooterByName("Search");
         userSearchPage = PageGeneratorManager.getUserSearchPage(driver);
         userSearchPage.inputToSearchKeywordTextbox(keywordAdvancedSearch);
         userSearchPage.clickToAdvancedSearchCheckbox();

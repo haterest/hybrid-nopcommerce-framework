@@ -55,36 +55,6 @@ public class Admin_02_Customer extends BaseTest {
         zipPostalCodeEdited = dataFaker.getZipCode();
         phoneNumberEdited = dataFaker.getPhone();
 
-        emailID = "Email";
-        passwordID = "Password";
-        firstNameID = "FirstName";
-        lastNameID = "LastName";
-        dobID = "DateOfBirth";
-        companyID = "Company";
-        nameTable = "Name";
-        companyNameTable = "Company name";
-        editTable = "Edit";
-        searchEmailID = "SearchEmail";
-        customerRoleTable = "Customer roles";
-        searchFirstNameID = "SearchFirstName";
-        searchLastNameID = "SearchLastName";
-        searchCompanyID = "SearchCompany";
-        addressFirstNameID = "Address_FirstName";
-        addressLastNameID = "Address_LastName";
-        addressEmailID = "Address_Email";
-        addressCompanyID = "Address_Company";
-        addressCityID = "Address_City";
-        addressAddress1ID = "Address_Address1";
-        addressAddress2ID = "Address_Address2";
-        addressZipID = "Address_ZipPostalCode";
-        addressPhoneID = "Address_PhoneNumber";
-        firstNameTable = "First name";
-        lastNameTable = "Last name";
-        emailTable = "Email";
-        phoneTable = "Phone number";
-        addressTable = "Address";
-        deleteTable = "Delete";
-
         userHomePage = PageGeneratorManager.getUserHomePage(driver);
         userHomePage.openPageURL(GlobalConstant.getGlobalConstants().getAdminPageURL());
         adminLoginPage = PageGeneratorManager.getAdminLoginPage(driver);
@@ -111,25 +81,25 @@ public class Admin_02_Customer extends BaseTest {
         verifyTrue(adminDetailCustomerPage.isDisplayedAddNewCustomerPage());
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 06: Input " + email + " to email textbox");
-        adminDetailCustomerPage.inputToTextBoxById(emailID, email);
+        adminDetailCustomerPage.inputToTextBoxById("Email", email);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 07: Input " + password + " to password textbox");
-        adminDetailCustomerPage.inputToTextBoxById(passwordID, password);
+        adminDetailCustomerPage.inputToTextBoxById("Password", password);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 07: Input " + firstName + " to first name textbox");
-        adminDetailCustomerPage.inputToTextBoxById(firstNameID, firstName);
+        adminDetailCustomerPage.inputToTextBoxById("FirstName", firstName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 08: Input " + lastName + " to last name textbox");
-        adminDetailCustomerPage.inputToTextBoxById(lastNameID, lastName);
+        adminDetailCustomerPage.inputToTextBoxById("LastName", lastName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 09: Select female radio button");
         adminDetailCustomerPage.selectFemaleRadioButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 10: Input " + dobCustomer + " to date of birth textbox");
-        adminDetailCustomerPage.inputToTextBoxById(dobID, dobCustomer);
+        adminDetailCustomerPage.inputToTextBoxById("DateOfBirth", dobCustomer);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 11: Input " + companyName + " to company name textbox");
-        adminDetailCustomerPage.inputToTextBoxById(companyID, companyName);
+        adminDetailCustomerPage.inputToTextBoxById("Company", companyName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 12: Click to remove Registed option in customer roles");
         adminDetailCustomerPage.clickToRemoveRegistedOption();
@@ -147,22 +117,22 @@ public class Admin_02_Customer extends BaseTest {
         verifyEquals(adminDetailCustomerPage.getSuccessfulMessage(), "The new customer has been added successfully.");
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 17: Verify " + email + " added in email textbox");
-        verifyEquals(adminDetailCustomerPage.getValueTextboxByID(emailID),email);
+        verifyEquals(adminDetailCustomerPage.getValueTextboxByID("Email"),email);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 18: Verify " + firstName + " added in first name textbox");
-        verifyEquals(adminDetailCustomerPage.getValueTextboxByID(firstNameID),firstName);
+        verifyEquals(adminDetailCustomerPage.getValueTextboxByID("FirstName"),firstName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 19: Verify " + lastName + " added in last name textbox");
-        verifyEquals(adminDetailCustomerPage.getValueTextboxByID(lastNameID),lastName);
+        verifyEquals(adminDetailCustomerPage.getValueTextboxByID("LastName"),lastName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 20: Verify female gender is selected");
         verifyTrue(adminDetailCustomerPage.isFemaleRadioButtonSelected());
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 21: Verify " + dobCustomer + " added in date of birth textbox");
-        verifyEquals(adminDetailCustomerPage.getValueTextboxByID(dobID),dobCustomer);
+        verifyEquals(adminDetailCustomerPage.getValueTextboxByID("DateOfBirth"),dobCustomer);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 22: Verify " + companyName + " added in company name textbox");
-        verifyEquals(adminDetailCustomerPage.getValueTextboxByID(companyID),companyName);
+        verifyEquals(adminDetailCustomerPage.getValueTextboxByID("Company"),companyName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 23: Verify " + guestOption + " selected in customer roles");
         verifyTrue(adminDetailCustomerPage.isDisplayedOptionInCustomerRoles(guestOption));
@@ -183,16 +153,16 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.selectItemInCustomerRolesMenu(guestOption);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 29: Input " + email + " to email textbox");
-        adminCustomersPage.inputToTextboxById(searchEmailID, email);
+        adminCustomersPage.inputToTextboxById("SearchEmail", email);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 30: Click search button");
         adminCustomersPage.clickSearchButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 31: Verify that display customer name in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(nameTable), firstName + " " + lastName);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Name"), firstName + " " + lastName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 01 - Create new customer - Step 32: Verify that display company name in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(companyNameTable), companyName);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Company name"), companyName);
     }
 
     @Test
@@ -211,19 +181,19 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.selectItemInCustomerRolesMenu(guestOption);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 02 - Search customer with email - Step 05: Input " + email + " to email textbox");
-        adminCustomersPage.inputToTextboxById(searchEmailID, email);
+        adminCustomersPage.inputToTextboxById("SearchEmail", email);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 02 - Search customer with email - Step 06: Click search button");
         adminCustomersPage.clickSearchButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 02 - Search customer with email - Step 07: Verify that display customer name in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(nameTable), firstName + " " + lastName);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Name"), firstName + " " + lastName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 02 - Search customer with email - Step 08: Verify that display customer roles in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(customerRoleTable), guestOption);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Customer roles"), guestOption);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 02 - Search customer with email - Step 09: Verify that display company name in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(companyNameTable), companyName);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Company name"), companyName);
     }
 
     @Test
@@ -242,22 +212,22 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.selectItemInCustomerRolesMenu(guestOption);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 03 - Search customer with FirstName and LastName - Step 05: Input " + firstName + " to first name textbox");
-        adminCustomersPage.inputToTextboxById(searchFirstNameID, firstName);
+        adminCustomersPage.inputToTextboxById("SearchFirstName", firstName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 03 - Search customer with FirstName and LastName - Step 06: Input " + lastName + " to last name textbox");
-        adminCustomersPage.inputToTextboxById(searchLastNameID, lastName);
+        adminCustomersPage.inputToTextboxById("SearchLastName", lastName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 03 - Search customer with FirstName and LastName - Step 07: Click search button");
         adminCustomersPage.clickSearchButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 03 - Search customer with FirstName and LastName - Step 08: Verify that display customer name in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(nameTable), firstName + " " + lastName);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Name"), firstName + " " + lastName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 03 - Search customer with FirstName and LastName - Step 09: Verify that display customer roles in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(customerRoleTable), guestOption);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Customer roles"), guestOption);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 03 - Search customer with FirstName and LastName - Step 10: Verify that display company name in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(companyNameTable), companyName);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Company name"), companyName);
     }
 
     @Test
@@ -276,19 +246,19 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.selectItemInCustomerRolesMenu(guestOption);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 04 - Search customer with company - Step 05: Input " + companyName + " to company textbox");
-        adminCustomersPage.inputToTextboxById(searchCompanyID, companyName);
+        adminCustomersPage.inputToTextboxById("SearchCompany", companyName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 04 - Search customer with company - Step 06: Click search button");
         adminCustomersPage.clickSearchButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 04 - Search customer with company - Step 07: Verify that display customer name in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(nameTable), firstName + " " + lastName);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Name"), firstName + " " + lastName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 04 - Search customer with company - Step 08: Verify that display customer roles in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(customerRoleTable), guestOption);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Customer roles"), guestOption);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 04 - Search customer with company - Step 09: Verify that display company name in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(companyNameTable), companyName);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Company name"), companyName);
     }
 
     @Test
@@ -307,13 +277,13 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.selectItemInCustomerRolesMenu(guestOption);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 05 - Search customer with Full data - Step 05: Input " + email + " to email textbox");
-        adminCustomersPage.inputToTextboxById(searchEmailID, email);
+        adminCustomersPage.inputToTextboxById("SearchEmail", email);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 05 - Search customer with Full data - Step 06: Input " + firstName + " to first name textbox");
-        adminCustomersPage.inputToTextboxById(searchFirstNameID, firstName);
+        adminCustomersPage.inputToTextboxById("SearchFirstName", firstName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 05 - Search customer with Full data - Step 07: Input " + lastName + " to last name textbox");
-        adminCustomersPage.inputToTextboxById(searchLastNameID, lastName);
+        adminCustomersPage.inputToTextboxById("SearchLastName", lastName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 05 - Search customer with Full data - Step 08: Select " + monthOfBirth + " in Month of birth dropdown");
         adminCustomersPage.selectMonthOfBirthDropdown(monthOfBirth);
@@ -322,19 +292,19 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.selectDayOfBirthDropdown(dayOfBirth);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 05 - Search customer with Full data - Step 10: Input " + companyName + " to company textbox");
-        adminCustomersPage.inputToTextboxById(searchCompanyID, companyName);
+        adminCustomersPage.inputToTextboxById("SearchCompany", companyName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 05 - Search customer with Full data - Step 11: Click search button");
         adminCustomersPage.clickSearchButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 05 - Search customer with Full data - Step 12: Verify that display customer name in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(nameTable), firstName + " " + lastName);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Name"), firstName + " " + lastName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 05 - Search customer with Full data - Step 13: Verify that display customer roles in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(customerRoleTable), guestOption);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Customer roles"), guestOption);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 05 - Search customer with Full data - Step 14: Verify that display company name in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(companyNameTable), companyName);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Company name"), companyName);
     }
 
     @Test
@@ -353,13 +323,13 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.selectItemInCustomerRolesMenu(guestOption);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 05: Input " + email + " to email textbox");
-        adminCustomersPage.inputToTextboxById(searchEmailID, email);
+        adminCustomersPage.inputToTextboxById("SearchEmail", email);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 06: Input " + firstName + " to first name textbox");
-        adminCustomersPage.inputToTextboxById(searchFirstNameID, firstName);
+        adminCustomersPage.inputToTextboxById("SearchFirstName", firstName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 07: Input " + lastName + " to last name textbox");
-        adminCustomersPage.inputToTextboxById(searchLastNameID, lastName);
+        adminCustomersPage.inputToTextboxById("SearchLastName", lastName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 08: Select " + monthOfBirth + " in Month of birth dropdown");
         adminCustomersPage.selectMonthOfBirthDropdown(monthOfBirth);
@@ -368,37 +338,37 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.selectDayOfBirthDropdown(dayOfBirth);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 10: Input " + companyName + " to company textbox");
-        adminCustomersPage.inputToTextboxById(searchCompanyID, companyName);
+        adminCustomersPage.inputToTextboxById("SearchCompany", companyName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 11: Click search button");
         adminCustomersPage.clickSearchButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 12: Verify that display customer name in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(nameTable), firstName + " " + lastName);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Name"), firstName + " " + lastName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 13: Verify that display customer roles in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(customerRoleTable), guestOption);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Customer roles"), guestOption);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 14: Verify that display company name in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(companyNameTable), companyName);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Company name"), companyName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 15: Click Edit customer button in search table");
-        adminDetailCustomerPage = adminCustomersPage.clickEditButtonByName(editTable);
+        adminDetailCustomerPage = adminCustomersPage.clickEditButtonByName("Edit");
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 16: Input " + emailEdited + " to email textbox");
-        adminDetailCustomerPage.inputToTextBoxById(emailID, emailEdited);
+        adminDetailCustomerPage.inputToTextBoxById("Email", emailEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 17: Input " + firstNameEdited + " to first name textbox");
-        adminDetailCustomerPage.inputToTextBoxById(firstNameID, firstNameEdited);
+        adminDetailCustomerPage.inputToTextBoxById("FirstName", firstNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 18: Input " + lastNameEdited + " to last name textbox");
-        adminDetailCustomerPage.inputToTextBoxById(lastNameID, lastNameEdited);
+        adminDetailCustomerPage.inputToTextBoxById("LastName", lastNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 19: Input " + dobEdited + " to date of birth textbox");
-        adminDetailCustomerPage.inputToTextBoxById(dobID, dobEdited);
+        adminDetailCustomerPage.inputToTextBoxById("DateOfBirth", dobEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 20: Input " + companyEdited + " to company name textbox");
-        adminDetailCustomerPage.inputToTextBoxById(companyID, companyEdited);
+        adminDetailCustomerPage.inputToTextBoxById("Company", companyEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 21: Input " + adminCommentEdited + " to admin comment text area");
         adminDetailCustomerPage.inputToAdminComment(adminCommentEdited);
@@ -410,19 +380,19 @@ public class Admin_02_Customer extends BaseTest {
         verifyEquals(adminDetailCustomerPage.getSuccessfulMessage(), "The customer has been updated successfully.");
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 24: Verify " + emailEdited + " added in email textbox");
-        verifyEquals(adminDetailCustomerPage.getValueTextboxByID(emailID),emailEdited);
+        verifyEquals(adminDetailCustomerPage.getValueTextboxByID("Email"),emailEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 25: Verify " + firstNameEdited + " added in first name textbox");
-        verifyEquals(adminDetailCustomerPage.getValueTextboxByID(firstNameID),firstNameEdited);
+        verifyEquals(adminDetailCustomerPage.getValueTextboxByID("FirstName"),firstNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 26: Verify " + lastNameEdited + " added in last name textbox");
-        verifyEquals(adminDetailCustomerPage.getValueTextboxByID(lastNameID),lastNameEdited);
+        verifyEquals(adminDetailCustomerPage.getValueTextboxByID("LastName"),lastNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 27: Verify " + dobEdited + " added in date of birth textbox");
-        verifyEquals(adminDetailCustomerPage.getValueTextboxByID(dobID),dobEdited);
+        verifyEquals(adminDetailCustomerPage.getValueTextboxByID("DateOfBirth"),dobEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 28: Verify " + companyEdited + " added in company name textbox");
-        verifyEquals(adminDetailCustomerPage.getValueTextboxByID(companyID), companyEdited);
+        verifyEquals(adminDetailCustomerPage.getValueTextboxByID("Company"), companyEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 29: Verify " + adminCommentEdited + " added in admin comment text area");
         verifyEquals(adminDetailCustomerPage.getAdminCommentTextArea(),adminCommentEdited);
@@ -440,13 +410,13 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.selectItemInCustomerRolesMenu(guestOption);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 34: Input " + emailEdited + " to email textbox");
-        adminCustomersPage.inputToTextboxById(searchEmailID, emailEdited);
+        adminCustomersPage.inputToTextboxById("SearchEmail", emailEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 35: Input " + firstNameEdited + " to first name textbox");
-        adminCustomersPage.inputToTextboxById(searchFirstNameID, firstNameEdited);
+        adminCustomersPage.inputToTextboxById("SearchFirstName", firstNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 36: Input " + lastNameEdited + " to last name textbox");
-        adminCustomersPage.inputToTextboxById(searchLastNameID, lastNameEdited);
+        adminCustomersPage.inputToTextboxById("SearchLastName", lastNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 37: Select " + monthOfBirthEdited + " in Month of birth dropdown");
         adminCustomersPage.selectMonthOfBirthDropdown(monthOfBirthEdited);
@@ -455,19 +425,19 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.selectDayOfBirthDropdown(dayOfBirthEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 39: Input " + companyEdited + " to company textbox");
-        adminCustomersPage.inputToTextboxById(searchCompanyID, companyEdited);
+        adminCustomersPage.inputToTextboxById("SearchCompany", companyEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 40: Click search button");
         adminCustomersPage.clickSearchButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 41: Verify that display customer name in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(nameTable), firstNameEdited + " " + lastNameEdited);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Name"), firstNameEdited + " " + lastNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 42: Verify that display customer roles in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(customerRoleTable), guestOption);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Customer roles"), guestOption);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 06 - Edit customer - Step 43: Verify that display company name in search table");
-        verifyEquals(adminCustomersPage.getFirstRowCustomerByName(companyNameTable), companyEdited);
+        verifyEquals(adminCustomersPage.getFirstRowCustomerByName("Company name"), companyEdited);
     }
 
     @Test
@@ -480,13 +450,13 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.clickToSearchCustomerTab();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 03: Input " + emailEdited + " to email textbox");
-        adminCustomersPage.inputToTextboxById(searchEmailID, emailEdited);
+        adminCustomersPage.inputToTextboxById("SearchEmail", emailEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 04: Input " + firstNameEdited + " to first name textbox");
-        adminCustomersPage.inputToTextboxById(searchFirstNameID, firstNameEdited);
+        adminCustomersPage.inputToTextboxById("SearchFirstName", firstNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 05: Input " + lastNameEdited + " to last name textbox");
-        adminCustomersPage.inputToTextboxById(searchLastNameID, lastNameEdited);
+        adminCustomersPage.inputToTextboxById("SearchLastName", lastNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 06: Select " + monthOfBirthEdited + " in Month of birth dropdown");
         adminCustomersPage.selectMonthOfBirthDropdown(monthOfBirthEdited);
@@ -495,7 +465,7 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.selectDayOfBirthDropdown(dayOfBirthEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 08: Input " + companyEdited + " to company textbox");
-        adminCustomersPage.inputToTextboxById(searchCompanyID, companyEdited);
+        adminCustomersPage.inputToTextboxById("SearchCompany", companyEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 09: Click to remove Registed option in customer roles");
         adminCustomersPage.clickToDeleteRegisted();
@@ -507,7 +477,7 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.clickSearchButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 12: Click Edit customer button in search table");
-        adminDetailCustomerPage = adminCustomersPage.clickEditButtonByName(editTable);
+        adminDetailCustomerPage = adminCustomersPage.clickEditButtonByName("Edit");
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 13: Click to Addresses Tab");
         adminDetailCustomerPage.clickToAddressesTab();
@@ -519,34 +489,34 @@ public class Admin_02_Customer extends BaseTest {
         verifyTrue(adminDetailCustomerAddressPage.isDisplayedAddNewAddressHeader());
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 16: Input " + firstName + " to first name textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressFirstNameID, firstName);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_FirstName", firstName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 17: Input " + lastName + " to last name textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressLastNameID, lastName);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_LastName", lastName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 18: Input " + email + " to email textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressEmailID, email);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_Email", email);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 19: Input " + companyName + " to company textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressCompanyID, companyName);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_Company", companyName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 20: Select " + vietNamCountry + " in Country dropdown");
         adminDetailCustomerAddressPage.selectCountryDropdown(vietNamCountry);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 21: Input " + cityName + " to City textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressCityID, cityName);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_City", cityName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 22: Input " + address1 + " to Address 1 textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressAddress1ID, address1);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_Address1", address1);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 23: Input " + address2 + " to Address 2 textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressAddress2ID, address2);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_Address2", address2);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 24: Input " + zipPostalCode + " to Zip / postal Code textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressZipID, zipPostalCode);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_ZipPostalCode", zipPostalCode);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 25: Input " + phoneNumber + " to Phone number textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressPhoneID, phoneNumber);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_PhoneNumber", phoneNumber);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 26: Click Save button");
         adminDetailCustomerAddressPage.clickSaveButton();
@@ -555,52 +525,52 @@ public class Admin_02_Customer extends BaseTest {
         verifyEquals(adminDetailCustomerAddressPage.getSuccessfulMessage(), "The new address has been added successfully.");
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 28: Verify " + firstName + " added in first name textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressFirstNameID), firstName);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_FirstName"), firstName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 29: Verify " + lastName + " added in last name textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressLastNameID), lastName);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_LastName"), lastName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 30: Verify " + email + " added in email textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressEmailID), email);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_Email"), email);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 31: Verify " + companyName + " added in company name textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressCompanyID), companyName);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_Company"), companyName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 32: Verify " + vietNamCountry + " is selected in Country dropdown");
         verifyEquals(adminDetailCustomerAddressPage.getValueDropdownCountry(), vietNamCountry);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 33: Verify " + cityName + " added in City textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressCityID), cityName);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_City"), cityName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 34: Verify " + address1 + " added in Address 1 textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressAddress1ID), address1);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_Address1"), address1);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 35: Verify " + address2 + " added in Address 2 textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressAddress2ID), address2);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_Address2"), address2);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 36: Verify " + zipPostalCode + " added in Zip / postal Code textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressZipID), zipPostalCode);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_ZipPostalCode"), zipPostalCode);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 37: Verify " + phoneNumber + " added in Phone number textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressPhoneID), phoneNumber);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_PhoneNumber"), phoneNumber);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 38: Click Back to customer details link");
         adminDetailCustomerPage = adminDetailCustomerAddressPage.clickBackToCustomerDetailsLink();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 39: Verify that display " + firstName + " in Addresses table");
-        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName(firstNameTable), firstName);
+        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName("First name"), firstName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 40: Verify that display " + lastName + " in Addresses table");
-        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName(lastNameTable), lastName);
+        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName("Last name"), lastName);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 41: Verify that display " + email + " in Addresses table");
-        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName(emailTable), email);
+        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName("Email"), email);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 42: Verify that display " + phoneNumber + " in Addresses table");
-        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName(phoneTable), phoneNumber);
+        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName("Phone number"), phoneNumber);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 07 - Add new address in Customer details - Step 43: Verify that display Address in Addresses table");
-        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName(addressTable),
+        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName("Address"),
                 companyName + "\n" + address1 + "\n" + address2 + "\n" + cityName + "," + zipPostalCode + "\n" + vietNamCountry);
     }
 
@@ -614,13 +584,13 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.clickToSearchCustomerTab();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 03: Input " + emailEdited + " to email textbox");
-        adminCustomersPage.inputToTextboxById(searchEmailID, emailEdited);
+        adminCustomersPage.inputToTextboxById("SearchEmail", emailEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 04: Input " + firstNameEdited + " to first name textbox");
-        adminCustomersPage.inputToTextboxById(searchFirstNameID, firstNameEdited);
+        adminCustomersPage.inputToTextboxById("SearchFirstName", firstNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 05: Input " + lastNameEdited + " to last name textbox");
-        adminCustomersPage.inputToTextboxById(searchLastNameID, lastNameEdited);
+        adminCustomersPage.inputToTextboxById("SearchLastName", lastNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 06: Select " + monthOfBirthEdited + " in Month of birth dropdown");
         adminCustomersPage.selectMonthOfBirthDropdown(monthOfBirthEdited);
@@ -629,7 +599,7 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.selectDayOfBirthDropdown(dayOfBirthEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 08: Input " + companyEdited + " to company textbox");
-        adminCustomersPage.inputToTextboxById(searchCompanyID, companyEdited);
+        adminCustomersPage.inputToTextboxById("SearchCompany", companyEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 09: Click to remove Registed option in customer roles");
         adminCustomersPage.clickToDeleteRegisted();
@@ -641,47 +611,47 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.clickSearchButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 12: Click Edit customer button in search table");
-        adminDetailCustomerPage = adminCustomersPage.clickEditButtonByName(editTable);
+        adminDetailCustomerPage = adminCustomersPage.clickEditButtonByName("Edit");
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 13: Click to Addresses Tab");
         adminDetailCustomerPage.clickToAddressesTab();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 14: Click Edit button in Addresses table");
-        adminDetailCustomerPage.clickButtonFirstRowAddressesByName(editTable);
+        adminDetailCustomerPage.clickButtonFirstRowAddressesByName("Edit");
         adminDetailCustomerAddressPage = PageGeneratorManager.getAdminDetailCustomerAddressPage(driver);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 15: Verify displayed Edit Address Page");
         verifyTrue(adminDetailCustomerAddressPage.isDisplayedEditAddressHeader());
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 16: Input " + firstNameEdited + " to first name textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressFirstNameID, firstNameEdited);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_FirstName", firstNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 17: Input " + lastNameEdited + " to last name textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressLastNameID, lastNameEdited);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_LastName", lastNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 18: Input " + emailEdited + " to email textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressEmailID, emailEdited);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_Email", emailEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 19: Input " + companyEdited + " to company textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressCompanyID, companyEdited);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_Company", companyEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 20: Select " + germanyCountry + " in Country dropdown");
         adminDetailCustomerAddressPage.selectCountryDropdown(germanyCountry);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 21: Input " + cityEdited + " to City textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressCityID, cityEdited);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_City", cityEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 22: Input " + address1Edited + " to Address 1 textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressAddress1ID, address1Edited);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_Address1", address1Edited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 23: Input " + address2Edited + " to Address 2 textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressAddress2ID, address2Edited);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_Address2", address2Edited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 24: Input " + zipPostalCodeEdited + " to Zip / postal Code textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressZipID, zipPostalCodeEdited);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_ZipPostalCode", zipPostalCodeEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 25: Input " + phoneNumberEdited + " to Phone number textbox");
-        adminDetailCustomerAddressPage.inputToTextboxByID(addressPhoneID, phoneNumberEdited);
+        adminDetailCustomerAddressPage.inputToTextboxByID("Address_PhoneNumber", phoneNumberEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 26: Click Save button");
         adminDetailCustomerAddressPage.clickSaveButton();
@@ -690,52 +660,52 @@ public class Admin_02_Customer extends BaseTest {
         verifyEquals(adminDetailCustomerAddressPage.getSuccessfulMessage(), "The address has been updated successfully.");
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 28: Verify " + firstNameEdited + " added in first name textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressFirstNameID), firstNameEdited);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_FirstName"), firstNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 29: Verify " + lastNameEdited + " added in last name textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressLastNameID), lastNameEdited);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_LastName"), lastNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 30: Verify " + emailEdited + " added in email textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressEmailID), emailEdited);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_Email"), emailEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 31: Verify " + companyEdited + " added in company name textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressCompanyID), companyEdited);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_Company"), companyEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 32: Verify " + germanyCountry + " is selected in Country dropdown");
         verifyEquals(adminDetailCustomerAddressPage.getValueDropdownCountry(), germanyCountry);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 33: Verify " + cityEdited + " added in City textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressCityID), cityEdited);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_City"), cityEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 34: Verify " + address1Edited + " added in Address 1 textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressAddress1ID), address1Edited);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_Address1"), address1Edited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 35: Verify " + address2Edited + " added in Address 2 textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressAddress2ID), address2Edited);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_Address2"), address2Edited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 36: Verify " + zipPostalCodeEdited + " added in Zip / postal Code textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressZipID), zipPostalCodeEdited);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_ZipPostalCode"), zipPostalCodeEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 37: Verify " + phoneNumberEdited + " added in Phone number textbox");
-        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID(addressPhoneID), phoneNumberEdited);
+        verifyEquals(adminDetailCustomerAddressPage.getValueTextboxByID("Address_PhoneNumber"), phoneNumberEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 38: Click Back to customer details link");
         adminDetailCustomerPage = adminDetailCustomerAddressPage.clickBackToCustomerDetailsLink();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 39: Verify that display " + firstNameEdited + " in Addresses table");
-        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName(firstNameTable), firstNameEdited);
+        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName("First name"), firstNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 40: Verify that display " + lastNameEdited + " in Addresses table");
-        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName(lastNameTable), lastNameEdited);
+        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName("Last name"), lastNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 41: Verify that display " + emailEdited + " in Addresses table");
-        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName(emailTable), emailEdited);
+        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName("Email"), emailEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 42: Verify that display " + phoneNumberEdited + " in Addresses table");
-        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName(phoneTable), phoneNumberEdited);
+        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName("Phone number"), phoneNumberEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 08 - Edit Address in Customer details - Step 43: Verify that display Address in Addresses table");
-        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName(addressTable),
+        verifyEquals(adminDetailCustomerPage.getFirstRowAddressesByName("Address"),
                 companyEdited + "\n" + address1Edited + "\n" + address2Edited + "\n" + cityEdited + "," + zipPostalCodeEdited + "\n" + germanyCountry);
     }
 
@@ -749,13 +719,13 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.clickToSearchCustomerTab();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 09 - Delete Address in Customer details - Step 03: Input " + emailEdited + " to email textbox");
-        adminCustomersPage.inputToTextboxById(searchEmailID, emailEdited);
+        adminCustomersPage.inputToTextboxById("SearchEmail", emailEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 09 - Delete Address in Customer details - Step 04: Input " + firstNameEdited + " to first name textbox");
-        adminCustomersPage.inputToTextboxById(searchFirstNameID, firstNameEdited);
+        adminCustomersPage.inputToTextboxById("SearchFirstName", firstNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 09 - Delete Address in Customer details - Step 05: Input " + lastNameEdited + " to last name textbox");
-        adminCustomersPage.inputToTextboxById(searchLastNameID, lastNameEdited);
+        adminCustomersPage.inputToTextboxById("SearchLastName", lastNameEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 09 - Delete Address in Customer details - Step 06: Select " + monthOfBirthEdited + " in Month of birth dropdown");
         adminCustomersPage.selectMonthOfBirthDropdown(monthOfBirthEdited);
@@ -764,7 +734,7 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.selectDayOfBirthDropdown(dayOfBirthEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 09 - Delete Address in Customer details - Step 08: Input " + companyEdited + " to company textbox");
-        adminCustomersPage.inputToTextboxById(searchCompanyID, companyEdited);
+        adminCustomersPage.inputToTextboxById("SearchCompany", companyEdited);
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 09 - Delete Address in Customer details - Step 09: Click to remove Registed option in customer roles");
         adminCustomersPage.clickToDeleteRegisted();
@@ -776,13 +746,13 @@ public class Admin_02_Customer extends BaseTest {
         adminCustomersPage.clickSearchButton();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 09 - Delete Address in Customer details - Step 12: Click Edit customer button in search table");
-        adminDetailCustomerPage = adminCustomersPage.clickEditButtonByName(editTable);
+        adminDetailCustomerPage = adminCustomersPage.clickEditButtonByName("Edit");
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 09 - Delete Address in Customer details - Step 13: Click to Addresses Tab");
         adminDetailCustomerPage.clickToAddressesTab();
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 09 - Delete Address in Customer details - Step 14: Click Delete button in Addresses table");
-        adminDetailCustomerPage.clickButtonFirstRowAddressesByName(deleteTable);
+        adminDetailCustomerPage.clickButtonFirstRowAddressesByName("Delete");
 
         ExtentTestManager.getTest().log(Status.INFO, "Customer 09 - Delete Address in Customer details - Step 15: Accept pop up alert");
         adminDetailCustomerPage.acceptAlertMessage();
@@ -797,13 +767,9 @@ public class Admin_02_Customer extends BaseTest {
     }
 
     private String customerMenu, email, password, firstName, lastName, maleGender, dob, companyName, guestRole,
-            adminComment, emailID, passwordID, firstNameID, lastNameID, dobID, companyID, dobCustomer, guestOption,
-            nameTable, companyNameTable, searchEmailID, customerRoleTable, searchFirstNameID, searchLastNameID,
-            searchCompanyID, monthOfBirth, dayOfBirth, editTable, emailEdited, firstNameEdited, lastNameEdited,
-            dobEdited, companyEdited, adminCommentEdited, monthOfBirthEdited, dayOfBirthEdited, addressFirstNameID,
-            addressLastNameID, addressEmailID, addressCompanyID, addressCityID, addressAddress1ID, addressAddress2ID,
-            addressZipID, addressPhoneID, vietNamCountry, cityName, address1, address2, zipPostalCode, phoneNumber,
-            firstNameTable, lastNameTable, emailTable, phoneTable, addressTable, deleteTable, germanyCountry,
+            adminComment, dobCustomer, guestOption, monthOfBirth, dayOfBirth, emailEdited, firstNameEdited, lastNameEdited,
+            dobEdited, companyEdited, adminCommentEdited, monthOfBirthEdited, dayOfBirthEdited,
+            vietNamCountry, cityName, address1, address2, zipPostalCode, phoneNumber, germanyCountry,
             cityEdited, address1Edited, address2Edited, zipPostalCodeEdited, phoneNumberEdited;
     private WebDriver driver;
     DataHelper dataFaker;

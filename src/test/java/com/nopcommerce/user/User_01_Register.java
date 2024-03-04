@@ -7,7 +7,6 @@ import pageObjects.user.PageGeneratorManager;
 import pageObjects.user.UserHomePageObject;
 import pageObjects.user.UserRegisterPageObject;
 import utilities.DataHelper;
-import utilities.ElementData;
 
 public class User_01_Register extends BaseTest {
     @Parameters({"envName", "severName", "browserName", "osName", "ipAddress", "portNumber"})
@@ -27,79 +26,79 @@ public class User_01_Register extends BaseTest {
 
     @Test
     public void Register_01_Empty_Data() {
-        userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName("Register");
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
         userRegisterPage.clickToRegisterButton();
-        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById(ElementData.RegisterPage.FIRST_NAME_ERROR_ID), "First name is required.");
-        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById(ElementData.RegisterPage.LAST_NAME_ERROR_ID), "Last name is required.");
-        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById(ElementData.RegisterPage.EMAIL_ERROR_ID), "Email is required.");
-        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById(ElementData.RegisterPage.PASSWORD_ERROR_ID), "Password is required.");
-        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById(ElementData.RegisterPage.CONFIRM_PASSWORD_ERROR_ID), "Password is required.");
+        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById("FirstName-error"), "First name is required.");
+        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById("LastName-error"), "Last name is required.");
+        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById("Email-error"), "Email is required.");
+        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById("Password-error"), "Password is required.");
+        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById("ConfirmPassword-error"), "Password is required.");
     }
 
     @Test
     public void Register_02_Invalid_Email() {
-        userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName("Register");
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.FIRST_NAME_TEXTBOX_ID, firstName);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.LAST_NAME_TEXTBOX_ID, lastName);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.EMAIL_TEXTBOX_ID, dataFaker.getFullName());
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.PASSWORD_TEXTBOX_ID, password);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.CONFIRM_PASSWORD_TEXTBOX_ID, password);
+        userRegisterPage.inputToTextboxById("FirstName", firstName);
+        userRegisterPage.inputToTextboxById("LastName", lastName);
+        userRegisterPage.inputToTextboxById("Email", dataFaker.getFullName());
+        userRegisterPage.inputToTextboxById("Password", password);
+        userRegisterPage.inputToTextboxById("ConfirmPassword", password);
         userRegisterPage.clickToRegisterButton();
-        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById(ElementData.RegisterPage.EMAIL_ERROR_ID), "Wrong email");
+        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById("Email-error"), "Wrong email");
     }
 
     @Test
     public void Register_03_Register_Successful() {
-        userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName("Register");
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.FIRST_NAME_TEXTBOX_ID, firstName);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.LAST_NAME_TEXTBOX_ID, lastName);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.EMAIL_TEXTBOX_ID, emailAdress);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.PASSWORD_TEXTBOX_ID, password);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.CONFIRM_PASSWORD_TEXTBOX_ID, password);
+        userRegisterPage.inputToTextboxById("FirstName", firstName);
+        userRegisterPage.inputToTextboxById("LastName", lastName);
+        userRegisterPage.inputToTextboxById("Email", emailAdress);
+        userRegisterPage.inputToTextboxById("Password", password);
+        userRegisterPage.inputToTextboxById("ConfirmPassword", password);
         userRegisterPage.clickToRegisterButton();
         verifyEquals(userRegisterPage.getRegisterSuccesfulMessage(), "Your registration completed");
     }
 
     @Test
     public void Register_04_Email_Already_Exists() {
-        userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName("Register");
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.FIRST_NAME_TEXTBOX_ID, firstName);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.LAST_NAME_TEXTBOX_ID, lastName);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.EMAIL_TEXTBOX_ID, emailAdress);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.PASSWORD_TEXTBOX_ID, password);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.CONFIRM_PASSWORD_TEXTBOX_ID, password);
+        userRegisterPage.inputToTextboxById("FirstName", firstName);
+        userRegisterPage.inputToTextboxById("LastName", lastName);
+        userRegisterPage.inputToTextboxById("Email", emailAdress);
+        userRegisterPage.inputToTextboxById("Password", password);
+        userRegisterPage.inputToTextboxById("ConfirmPassword", password);
         userRegisterPage.clickToRegisterButton();
         verifyTrue(userRegisterPage.isErrorMessageEmailAlreadyExists("The specified email already exists"));
     }
 
     @Test
     public void Register_05_Password_Less_Than_6_Characters() {
-        userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName("Register");
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.FIRST_NAME_TEXTBOX_ID, firstName);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.LAST_NAME_TEXTBOX_ID, lastName);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.EMAIL_TEXTBOX_ID, emailAdress);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.PASSWORD_TEXTBOX_ID, invalidPassword);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.CONFIRM_PASSWORD_TEXTBOX_ID, invalidPassword);
+        userRegisterPage.inputToTextboxById("FirstName", firstName);
+        userRegisterPage.inputToTextboxById("LastName", lastName);
+        userRegisterPage.inputToTextboxById("Email", emailAdress);
+        userRegisterPage.inputToTextboxById("Password", invalidPassword);
+        userRegisterPage.inputToTextboxById("ConfirmPassword", invalidPassword);
         userRegisterPage.clickToRegisterButton();
-        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById(ElementData.RegisterPage.PASSWORD_ERROR_ID), "Password must meet the following rules:\nmust have at least 6 characters");
+        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById("Password-error"), "Password must meet the following rules:\nmust have at least 6 characters");
     }
 
     @Test
     public void Register_06_Confirmation_Password_Does_not_Match() {
-        userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName("Register");
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.FIRST_NAME_TEXTBOX_ID, firstName);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.LAST_NAME_TEXTBOX_ID, lastName);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.EMAIL_TEXTBOX_ID, emailAdress);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.PASSWORD_TEXTBOX_ID, password);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.CONFIRM_PASSWORD_TEXTBOX_ID, invalidPassword);
+        userRegisterPage.inputToTextboxById("FirstName", firstName);
+        userRegisterPage.inputToTextboxById("LastName", lastName);
+        userRegisterPage.inputToTextboxById("Email", emailAdress);
+        userRegisterPage.inputToTextboxById("Password", password);
+        userRegisterPage.inputToTextboxById("ConfirmPassword", invalidPassword);
         userRegisterPage.clickToRegisterButton();
-        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById(ElementData.RegisterPage.CONFIRM_PASSWORD_ERROR_ID), "The password and confirmation password do not match.");
+        verifyEquals(userRegisterPage.getErrorMessageBelowTextboxById("ConfirmPassword-error"), "The password and confirmation password do not match.");
     }
 
     @AfterClass(alwaysRun = true)

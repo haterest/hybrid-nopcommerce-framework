@@ -4,7 +4,6 @@ import commons.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import pageObjects.user.*;
-import utilities.ElementData;
 
 public class User_07_Order extends BaseTest {
     @Parameters({"envName", "severName", "browserName", "osName", "ipAddress", "portNumber"})
@@ -35,8 +34,8 @@ public class User_07_Order extends BaseTest {
 
     @Test
     public void Order_01_Add_product_to_Cart (){
-        userHomePage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
-                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.DESKTOPS_SUB_CATEGORY);
+        userHomePage.openCategoriesPageByName("HeaderMenu",
+                "Computers", "Desktops");
         userDesktopPage = PageGeneratorManager.getUserDesktopPage(driver);
         userDetailProductPage = userDesktopPage.openDetailProductPageByName(buildComputerProduct);
         userDetailProductPage.clickToRadioOrCheckboxButtonByName(value400GB);
@@ -98,8 +97,7 @@ public class User_07_Order extends BaseTest {
 
     @Test
     public void Order_04_Update_Shopping_Cart (){
-        userShoppingCartPage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
-                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.DESKTOPS_SUB_CATEGORY);
+        userShoppingCartPage.openCategoriesPageByName("HeaderMenu", "Computers", "Desktops");
         userDesktopPage = PageGeneratorManager.getUserDesktopPage(driver);
         userDetailProductPage = userDesktopPage.openDetailProductPageByName(lenovo600Product);
         userDetailProductPage.inputQuantityProductDetail(value5Quantity);

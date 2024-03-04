@@ -29,17 +29,17 @@ public class CommonRegisterLogin extends BaseTest {
         firstName = dataFaker.getFirstName();
         lastName = dataFaker.getLastName();
 
-        userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName("Register");
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.FIRST_NAME_TEXTBOX_ID, firstName);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.LAST_NAME_TEXTBOX_ID, lastName);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.EMAIL_TEXTBOX_ID, emailAddress);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.PASSWORD_TEXTBOX_ID, password);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.CONFIRM_PASSWORD_TEXTBOX_ID, password);
+        userRegisterPage.inputToTextboxById("FirstName", firstName);
+        userRegisterPage.inputToTextboxById("LastName", lastName);
+        userRegisterPage.inputToTextboxById("Email", emailAddress);
+        userRegisterPage.inputToTextboxById("Password", password);
+        userRegisterPage.inputToTextboxById("ConfirmPassword", password);
         userRegisterPage.clickToRegisterButton();
         verifyEquals(userRegisterPage.getRegisterSuccesfulMessage(), "Your registration completed");
 
-        userHomePage.clickToMenuLinkByName(ElementData.BasePage.LOGIN_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName("Log in");
         userLoginPage = PageGeneratorManager.getUserLoginPage(driver);
         userLoginPage.inputToEmailTextbox(emailAddress);
         userLoginPage.inputToPasswordTextbox(password);

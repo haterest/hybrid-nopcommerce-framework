@@ -6,7 +6,6 @@ import org.testng.annotations.*;
 import pageObjects.user.PageGeneratorManager;
 import pageObjects.user.UserHomePageObject;
 import pageObjects.user.UserNotebooksPageObject;
-import utilities.ElementData;
 
 public class User_05_Sort_Display extends BaseTest {
     @Parameters({"envName", "severName", "browserName", "osName", "ipAddress", "portNumber"})
@@ -23,8 +22,7 @@ public class User_05_Sort_Display extends BaseTest {
 
     @Test
     public void Sort_Display_01_Sort_With_Name_A_to_Z(){
-        userHomePage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
-                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.NOTEBOOKS_SUB_CATEGORY);
+        userHomePage.openCategoriesPageByName("HeaderMenu", "Computers", "Notebooks");
         userNotebooksPage = PageGeneratorManager.getUserNotebooksPage(driver);
         userNotebooksPage.selectSortByDropDownByName("Name: A to Z");
         verifyTrue(userNotebooksPage.isProductNameSortedByAToZ());
@@ -32,8 +30,7 @@ public class User_05_Sort_Display extends BaseTest {
 
     @Test
     public void Sort_Display_02_Sort_With_Name_Z_to_A(){
-        userHomePage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
-                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.NOTEBOOKS_SUB_CATEGORY);
+        userHomePage.openCategoriesPageByName("HeaderMenu", "Computers", "Notebooks");
         userNotebooksPage = PageGeneratorManager.getUserNotebooksPage(driver);
         userNotebooksPage.selectSortByDropDownByName("Name: Z to A");
         verifyTrue(userNotebooksPage.isProductNameSortedByZToA());
@@ -41,8 +38,7 @@ public class User_05_Sort_Display extends BaseTest {
 
     @Test
     public void Sort_Display_03_Sort_With_Price_Low_to_High(){
-        userHomePage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
-                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.NOTEBOOKS_SUB_CATEGORY);
+        userHomePage.openCategoriesPageByName("HeaderMenu", "Computers", "Notebooks");
         userNotebooksPage = PageGeneratorManager.getUserNotebooksPage(driver);
         userNotebooksPage.selectSortByDropDownByName("Price: Low to High");
         verifyTrue(userNotebooksPage.isProductPriceSortedByLowToHigh());
@@ -50,8 +46,7 @@ public class User_05_Sort_Display extends BaseTest {
 
     @Test
     public void Sort_Display_04_Sort_With_Price_High_to_Low(){
-        userHomePage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
-                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.NOTEBOOKS_SUB_CATEGORY);
+        userHomePage.openCategoriesPageByName("HeaderMenu", "Computers", "Notebooks");
         userNotebooksPage = PageGeneratorManager.getUserNotebooksPage(driver);
         userNotebooksPage.selectSortByDropDownByName("Price: High to Low");
         verifyTrue(userNotebooksPage.isProductPriceSortedByHighToLow());
@@ -59,8 +54,7 @@ public class User_05_Sort_Display extends BaseTest {
 
     @Test
     public void Sort_Display_05_Display_In_3_Page(){
-        userHomePage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
-                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.NOTEBOOKS_SUB_CATEGORY);
+        userHomePage.openCategoriesPageByName("HeaderMenu", "Computers", "Notebooks");
         userNotebooksPage = PageGeneratorManager.getUserNotebooksPage(driver);
         userNotebooksPage.selectDisplayDropDownByNumberName(numberDropdownIs3);
         verifyTrue(userNotebooksPage.isProductDisplayFollowNumber(numberDropdownIs3));
@@ -73,8 +67,7 @@ public class User_05_Sort_Display extends BaseTest {
 
     @Test
     public void Sort_Display_06_Display_In_6_Page(){
-        userHomePage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
-                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.NOTEBOOKS_SUB_CATEGORY);
+        userHomePage.openCategoriesPageByName("HeaderMenu", "Computers", "Notebooks");
         userNotebooksPage = PageGeneratorManager.getUserNotebooksPage(driver);
         userNotebooksPage.selectDisplayDropDownByNumberName(numberDropdownIs6);
         verifyTrue(userNotebooksPage.isProductDisplayFollowNumber(numberDropdownIs6));
@@ -83,8 +76,7 @@ public class User_05_Sort_Display extends BaseTest {
 
     @Test
     public void Sort_Display_07_Display_In_9_Page(){
-        userHomePage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY,
-                ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.NOTEBOOKS_SUB_CATEGORY);
+        userHomePage.openCategoriesPageByName("HeaderMenu", "Computers", "Notebooks");
         userNotebooksPage = PageGeneratorManager.getUserNotebooksPage(driver);
         userNotebooksPage.selectDisplayDropDownByNumberName(numberDropdownIs9);
         verifyTrue(userNotebooksPage.isProductDisplayFollowNumber(numberDropdownIs9));

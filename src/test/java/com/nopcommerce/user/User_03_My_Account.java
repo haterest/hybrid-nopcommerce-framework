@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.testng.annotations.*;
 import pageObjects.user.*;
 import utilities.DataHelper;
-import utilities.ElementData;
 
 public class User_03_My_Account extends BaseTest {
     @Parameters({"envName", "severName", "browserName", "osName", "ipAddress", "portNumber"})
@@ -45,15 +44,15 @@ public class User_03_My_Account extends BaseTest {
         reviewContent = "sample content review " + getRandomNumber();
 
         userHomePage = PageGeneratorManager.getUserHomePage(driver);
-        userHomePage.clickToMenuLinkByName(ElementData.BasePage.REGISTER_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName("Register");
         userRegisterPage = PageGeneratorManager.getUserRegisterPage(driver);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.FIRST_NAME_TEXTBOX_ID, dataFaker.getFirstName());
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.LAST_NAME_TEXTBOX_ID, dataFaker.getLastName());
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.EMAIL_TEXTBOX_ID, emailAddress);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.PASSWORD_TEXTBOX_ID, password);
-        userRegisterPage.inputToTextboxById(ElementData.RegisterPage.CONFIRM_PASSWORD_TEXTBOX_ID, password);
+        userRegisterPage.inputToTextboxById("FirstName", dataFaker.getFirstName());
+        userRegisterPage.inputToTextboxById("LastName", dataFaker.getLastName());
+        userRegisterPage.inputToTextboxById("Email", emailAddress);
+        userRegisterPage.inputToTextboxById("Password", password);
+        userRegisterPage.inputToTextboxById("ConfirmPassword", password);
         userRegisterPage.clickToRegisterButton();
-        userHomePage.clickToMenuLinkByName(ElementData.BasePage.LOGIN_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName("Log in");
         userLoginPage = PageGeneratorManager.getUserLoginPage(driver);
         userLoginPage.inputToEmailTextbox(emailAddress);
         userLoginPage.inputToPasswordTextbox(password);
@@ -64,7 +63,7 @@ public class User_03_My_Account extends BaseTest {
 
     @Test
     public void My_Account_01_Customer_Infor() {
-        userHomePage.clickToMenuLinkByName(ElementData.BasePage.MY_ACCOUNT_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName("My account");
         userCustomerPage = PageGeneratorManager.getUserCustomerPage(driver);
         userCustomerPage.selectGenderRadioButton(customerGender);
         userCustomerPage.inputToFirstNameTextbox(customerFirstName);
@@ -129,9 +128,9 @@ public class User_03_My_Account extends BaseTest {
 
         verifyEquals(userChangePasswordPage.getSuccessfulMessageDisplayed(), "Password was changed");
         userChangePasswordPage.closeSuccessfulMessage();
-        userChangePasswordPage.clickToMenuLinkByName(ElementData.BasePage.LOG_OUT_MENU_LINK_ID);
+        userChangePasswordPage.clickToMenuLinkByName("Log out");
         userHomePage = PageGeneratorManager.getUserHomePage(driver);
-        userHomePage.clickToMenuLinkByName(ElementData.BasePage.LOGIN_MENU_LINK_ID);
+        userHomePage.clickToMenuLinkByName("Log in");
         userLoginPage = PageGeneratorManager.getUserLoginPage(driver);
 
         userLoginPage.inputToEmailTextbox(customerEmailAddress);
@@ -149,7 +148,7 @@ public class User_03_My_Account extends BaseTest {
 
     @Test
     public void My_Account_04_Product_Reviews() {
-        userHomePage.openCategoriesPageByName(ElementData.BasePage.HEADER_CATEGORY, ElementData.BasePage.COMPUTER_CATEGORY, ElementData.BasePage.DESKTOPS_SUB_CATEGORY);
+        userHomePage.openCategoriesPageByName("HeaderMenu", "Computers", "Desktops");
         userDesktopPage = PageGeneratorManager.getUserDesktopPage(driver);
         userDetailProductPage = userDesktopPage.openDetailProductPageByName(productName);
         userProductReviewPage = userDetailProductPage.clickToAddYourReviewLink();
@@ -159,7 +158,7 @@ public class User_03_My_Account extends BaseTest {
         verifyTrue(userProductReviewPage.isSuccessfulReviewMessageDisplayed("Product review is successfully added."));
         verifyEquals(userProductReviewPage.getReviewTitleText(), reviewTitle);
         verifyEquals(userProductReviewPage.getReviewContentText(), reviewContent);
-        userProductReviewPage.clickToMenuLinkByName(ElementData.BasePage.MY_ACCOUNT_MENU_LINK_ID);
+        userProductReviewPage.clickToMenuLinkByName("My account");
         userCustomerPage = PageGeneratorManager.getUserCustomerPage(driver);
         userMyProductReviewPage = userCustomerPage.clickToMyProductReviewPage();
         verifyEquals(userMyProductReviewPage.getReviewTitleText(), reviewTitle);
@@ -178,7 +177,7 @@ public class User_03_My_Account extends BaseTest {
             addressFirstName, addressLastName, addressEmail, addressCompanyName, addressCountry, addressStateProvincy,
             addressCity, addressAddress1, addressAddress2, addressZipPostalCode, addressPhoneNumber, addressFaxNumber,
             emailAddress, password, newPassword, productName, reviewTitle, reviewContent;
-    private DataHelper dataFaker;
+    DataHelper dataFaker;
     private UserLoginPageObject userLoginPage;
     private UserCustomerPageObject userCustomerPage;
     private UserHomePageObject userHomePage;
