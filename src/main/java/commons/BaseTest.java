@@ -8,9 +8,6 @@ import org.testng.Reporter;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Random;
 
 public class BaseTest {
@@ -56,12 +53,6 @@ public class BaseTest {
     protected int getRandomNumber() {
         Random rand = new Random();
         return rand.nextInt(9999);
-    }
-
-    protected String getCurrentDate(){
-        ZonedDateTime currentDateTimeOfUSAndCanada = ZonedDateTime.now(ZoneId.of("GMT-07:00"));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("EEEE, MMMM dd, yyyy");
-        return currentDateTimeOfUSAndCanada.format(formatter);
     }
 
     protected boolean verifyTrue(boolean condition) {

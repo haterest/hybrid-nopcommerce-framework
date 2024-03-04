@@ -10,7 +10,6 @@ import pageObjects.user.UserHomePageObject;
 import pageObjects.user.UserLoginPageObject;
 import pageObjects.user.UserRegisterPageObject;
 import utilities.DataHelper;
-import utilities.ElementData;
 
 import java.util.Set;
 

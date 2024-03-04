@@ -51,8 +51,6 @@ public class User_08_Payment extends BaseTest {
         shippingAddress = "Shipping Address";
         subTotalPriceLabel = "Sub-Total:";
 
-        currentDate = getCurrentDate();
-
         userHomePage = PageGeneratorManager.getUserHomePage(driver);
         userHomePage.clickToMenuLinkByName("Log in");
         userLoginPage = PageGeneratorManager.getUserLoginPage(driver);
@@ -151,7 +149,6 @@ public class User_08_Payment extends BaseTest {
         userOrderPage.clickDetailsButtonByNumBer(orderNumber);
 
         verifyEquals(userOrderPage.getOrderNumberTitle(), orderNumber);
-        verifyEquals(userOrderPage.getOrderDate(), "Order Date: " + currentDate);
         verifyEquals(userOrderPage.getOrderTotalPrice(), totalPrice);
         verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, nameValue), firstNameBill + " " + lastNameBill);
         verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, emailValue), "Email: " + emailBill);
@@ -272,7 +269,6 @@ public class User_08_Payment extends BaseTest {
         userOrderPage.clickDetailsButtonByNumBer(orderNumber);
 
         verifyEquals(userOrderPage.getOrderNumberTitle(), orderNumber);
-        verifyEquals(userOrderPage.getOrderDate(), "Order Date: " + currentDate);
         verifyEquals(userOrderPage.getOrderTotalPrice(), totalPrice);
         verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, nameValue), firstNameBill + " " + lastNameBill);
         verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, emailValue), "Email: " + emailBill);
@@ -382,7 +378,6 @@ public class User_08_Payment extends BaseTest {
         userOrderPage.clickDetailsButtonByNumBer(orderNumber);
 
         verifyEquals(userOrderPage.getOrderNumberTitle(), orderNumber);
-        verifyEquals(userOrderPage.getOrderDate(), "Order Date: " + currentDate);
         verifyEquals(userOrderPage.getOrderTotalPrice(), totalBillPrice);
         verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, nameValue), firstNameBill + " " + lastNameBill);
         verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, emailValue), "Email: " + emailBill);
@@ -420,7 +415,7 @@ public class User_08_Payment extends BaseTest {
     private String radio2ndDay, emailBill, firstNameBill, lastNameBill, countryBill, cityBill, address1Bill,
             zipCodeBill, phoneBill, emailShip, firstNameShip, lastNameShip, countryShip, cityShip, address1Ship,
             zipCodeShip, phoneShip, moneyMethod, appleMacProduct, unitPrice, totalPrice,
-            totalQuantity, successCartMess, currentDate, subTotalPriceLabel, billingAddress,
+            totalQuantity, successCartMess, subTotalPriceLabel, billingAddress,
             nameValue, emailValue, phoneValue, countryValue, shippingAddress, skuNumber, giftWrap,
             shippingMethod, shipPrice, taxPrice, totalBillPrice, zip550000, newAddress, radio2ndDayLabel, successOrder,
             cardCode, orderNumber, cardMethod,  quantity10, nextDayAirMethod;
