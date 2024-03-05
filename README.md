@@ -17,16 +17,14 @@ The project will using Google Chrome by default if no other browser is stated.
 :white_circle: Using cmd/Git in project dir follow command below:
 * Chrome (default) `mvn clean test`
 * Headless Chrome `mvn clean test -DbrowserName=h_chrome`
-* Firefox (not recommend) `mvn clean test -DbrowserName=firefox`
-* Headless Firefox (not recommend) `mvn clean test -DbrowserName=h_firefox`
+* Firefox `mvn clean test -DbrowserName=firefox`
+* Headless Firefox `mvn clean test -DbrowserName=h_firefox`
 * Edge `mvn clean test -DbrowserName=edge`
 * Safari (only MAC OS) `mvn clean test -DbrowserName=safari`
-> Due to bug with the Firefox browser so don't run it with Firefox
 
 :white_circle: Using test suite for running the test by following the project path:
 * Admin TestCase: `src/test/resources/RunNopcommerceAdminTest.xml`
 * User TestCase: `src/test/resources/RunNopcommerceUserTest.xml`
 
----
-
-> Grid, Extend Report and Parallel features will be update late...
+:white_circle: Open extent report path: 
+> /extentReport/ExtentReport.html

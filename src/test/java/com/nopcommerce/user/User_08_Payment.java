@@ -32,7 +32,6 @@ public class User_08_Payment extends BaseTest {
         phoneShip = dataFaker.getPhone();
         moneyMethod = "Check / Money Order";
         radio2ndDay = "2nd Day Air";
-        zip550000 = "550000";
         newAddress = "New Address";
         radio2ndDayLabel = "2nd Day Air ($0.00)";
         cardCode = String.valueOf(getRandomNumber());
@@ -43,13 +42,6 @@ public class User_08_Payment extends BaseTest {
         appleMacProduct = "Apple MacBook Pro 13-inch";
         successCartMess = "The product has been added to your shopping cart";
         successOrder = "Your order has been successfully processed!";
-        billingAddress = "Billing Address";
-        nameValue = "name";
-        emailValue = "email";
-        phoneValue = "phone";
-        countryValue = "country";
-        shippingAddress = "Shipping Address";
-        subTotalPriceLabel = "Sub-Total:";
 
         userHomePage = PageGeneratorManager.getUserHomePage(driver);
         userHomePage.clickToMenuLinkByName("Log in");
@@ -74,7 +66,7 @@ public class User_08_Payment extends BaseTest {
 
         userShoppingCartPage.clickToEstimateShippingButton();
         userShoppingCartPage.selectCountryDropDownByName(countryBill);
-        userShoppingCartPage.inputToZipPostalCodeTextbox(zip550000);
+        userShoppingCartPage.inputToZipPostalCodeTextbox("550000");
         userShoppingCartPage.clickToRadioButtonByName(radio2ndDay);
         userShoppingCartPage.clickApplyButton();
         skuNumber = userShoppingCartPage.getSKUProduct();
@@ -112,19 +104,19 @@ public class User_08_Payment extends BaseTest {
         userCheckoutPage.clickButtonByID("payment-method-buttons-container");
         userCheckoutPage.clickButtonByID("payment-info-buttons-container");
 
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, nameValue), firstNameBill + " " + lastNameBill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, emailValue), "Email: " + emailBill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, phoneValue), "Phone: " + phoneBill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, "address1"), address1Bill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, "city-state-zip"), cityBill + "," + zipCodeBill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, countryValue), countryBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "name"), firstNameBill + " " + lastNameBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "email"), "Email: " + emailBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "phone"), "Phone: " + phoneBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "address1"), address1Bill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "city-state-zip"), cityBill + "," + zipCodeBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "country"), countryBill);
         verifyEquals(userCheckoutPage.getPaymentMethodBilling(), moneyMethod);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, nameValue), firstNameShip + " " + lastNameShip);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, emailValue), "Email: " + emailShip);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, phoneValue), "Phone: " + phoneShip);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, "address1"), address1Ship);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, "city-state-zip"), cityShip + "," + zipCodeShip);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, countryValue), countryShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "name"), firstNameShip + " " + lastNameShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "email"), "Email: " + emailShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "phone"), "Phone: " + phoneShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "address1"), address1Ship);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "city-state-zip"), cityShip + "," + zipCodeShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "country"), countryShip);
         verifyEquals(userCheckoutPage.getShippingMethodShipping(), radio2ndDay);
         verifyEquals(userCheckoutPage.getDataTableCheckout("sku-number"), skuNumber);
         verifyEquals(userCheckoutPage.getProductNameCheckout(), appleMacProduct);
@@ -132,7 +124,7 @@ public class User_08_Payment extends BaseTest {
         verifyEquals(userCheckoutPage.getDataTableCheckout("product-quantity"), totalQuantity);
         verifyEquals(userCheckoutPage.getDataTableCheckout("product-subtotal"), totalPrice);
         verifyEquals(userCheckoutPage.getGiftWrappingCheckout(), giftWrap);
-        verifyEquals(userCheckoutPage.getPriceByLabelCheckout(subTotalPriceLabel), totalPrice);
+        verifyEquals(userCheckoutPage.getPriceByLabelCheckout("Sub-Total:"), totalPrice);
         verifyEquals(userCheckoutPage.getShippingMethodCheckout(), shippingMethod);
         verifyEquals(userCheckoutPage.getPriceByLabelCheckout("Shipping:"), shipPrice);
         verifyEquals(userCheckoutPage.getPriceByLabelCheckout("Tax:"), taxPrice);
@@ -150,19 +142,19 @@ public class User_08_Payment extends BaseTest {
 
         verifyEquals(userOrderPage.getOrderNumberTitle(), orderNumber);
         verifyEquals(userOrderPage.getOrderTotalPrice(), totalPrice);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, nameValue), firstNameBill + " " + lastNameBill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, emailValue), "Email: " + emailBill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, phoneValue), "Phone: " + phoneBill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, "address1"), address1Bill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, "city-state-zip"), cityBill + "," + zipCodeBill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, countryValue), countryBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "name"), firstNameBill + " " + lastNameBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "email"), "Email: " + emailBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "phone"), "Phone: " + phoneBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "address1"), address1Bill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "city-state-zip"), cityBill + "," + zipCodeBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "country"), countryBill);
         verifyEquals(userOrderPage.getPaymentMethodOrder(), moneyMethod);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, nameValue), firstNameShip + " " + lastNameShip);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, emailValue), "Email: " + emailShip);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, phoneValue), "Phone: " + phoneShip);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, "address1"), address1Ship);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, "city-state-zip"), cityShip + "," + zipCodeShip);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, countryValue), countryShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "name"), firstNameShip + " " + lastNameShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "email"), "Email: " + emailShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "phone"), "Phone: " + phoneShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "address1"), address1Ship);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "city-state-zip"), cityShip + "," + zipCodeShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "country"), countryShip);
         verifyEquals(userOrderPage.getShippingMethodOrder(), radio2ndDay);
 
         verifyEquals(userOrderPage.getDataTableByValue("sku-number"), skuNumber);
@@ -171,7 +163,7 @@ public class User_08_Payment extends BaseTest {
         verifyEquals(userOrderPage.getDataTableByValue("product-quantity"), totalQuantity);
         verifyEquals(userOrderPage.getDataTableByValue("product-subtotal"), totalPrice);
         verifyEquals(userOrderPage.getGiftWrappingOrder(), giftWrap);
-        verifyEquals(userOrderPage.getPriceBillByLabelName(subTotalPriceLabel), totalPrice);
+        verifyEquals(userOrderPage.getPriceBillByLabelName("Sub-Total:"), totalPrice);
         verifyEquals(userOrderPage.getPriceBillByLabelName("Shipping:"), shipPrice);
         verifyEquals(userOrderPage.getPriceBillByLabelName("Tax:"), taxPrice);
         verifyEquals(userOrderPage.getTotalBillPriceOrder(), totalBillPrice);
@@ -231,19 +223,19 @@ public class User_08_Payment extends BaseTest {
         userCheckoutPage.inputToTextBoxByID("CardCode", cardCode);
         userCheckoutPage.clickButtonByID("payment-info-buttons-container");
 
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, nameValue), firstNameBill + " " + lastNameBill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, emailValue), "Email: " + emailBill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, phoneValue), "Phone: " + phoneBill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, "address1"), address1Bill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, "city-state-zip"), cityBill + "," + zipCodeBill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, countryValue), countryBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "name"), firstNameBill + " " + lastNameBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "email"), "Email: " + emailBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "phone"), "Phone: " + phoneBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "address1"), address1Bill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "city-state-zip"), cityBill + "," + zipCodeBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "country"), countryBill);
         verifyEquals(userCheckoutPage.getPaymentMethodBilling(), cardMethod);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, nameValue), firstNameShip + " " + lastNameShip);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, emailValue), "Email: " + emailShip);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, phoneValue), "Phone: " + phoneShip);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, "address1"), address1Ship);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, "city-state-zip"), cityShip + "," + zipCodeShip);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, countryValue), countryShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "name"), firstNameShip + " " + lastNameShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "email"), "Email: " + emailShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "phone"), "Phone: " + phoneShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "address1"), address1Ship);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "city-state-zip"), cityShip + "," + zipCodeShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "country"), countryShip);
         verifyEquals(userCheckoutPage.getShippingMethodShipping(), radio2ndDay);
         verifyEquals(userCheckoutPage.getDataTableCheckout("sku-number"), skuNumber);
         verifyEquals(userCheckoutPage.getProductNameCheckout(), appleMacProduct);
@@ -251,7 +243,7 @@ public class User_08_Payment extends BaseTest {
         verifyEquals(userCheckoutPage.getDataTableCheckout("product-quantity"), totalQuantity);
         verifyEquals(userCheckoutPage.getDataTableCheckout("product-subtotal"), totalPrice);
         verifyEquals(userCheckoutPage.getGiftWrappingCheckout(), giftWrap);
-        verifyEquals(userCheckoutPage.getPriceByLabelCheckout(subTotalPriceLabel), totalPrice);
+        verifyEquals(userCheckoutPage.getPriceByLabelCheckout("Sub-Total:"), totalPrice);
         verifyEquals(userCheckoutPage.getShippingMethodCheckout(), shippingMethod);
         verifyEquals(userCheckoutPage.getPriceByLabelCheckout("Shipping:"), shipPrice);
         verifyEquals(userCheckoutPage.getPriceByLabelCheckout("Tax:"), taxPrice);
@@ -270,19 +262,19 @@ public class User_08_Payment extends BaseTest {
 
         verifyEquals(userOrderPage.getOrderNumberTitle(), orderNumber);
         verifyEquals(userOrderPage.getOrderTotalPrice(), totalPrice);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, nameValue), firstNameBill + " " + lastNameBill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, emailValue), "Email: " + emailBill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, phoneValue), "Phone: " + phoneBill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, "address1"), address1Bill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, "city-state-zip"), cityBill + "," + zipCodeBill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, countryValue), countryBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "name"), firstNameBill + " " + lastNameBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "email"), "Email: " + emailBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "phone"), "Phone: " + phoneBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "address1"), address1Bill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "city-state-zip"), cityBill + "," + zipCodeBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "country"), countryBill);
         verifyEquals(userOrderPage.getPaymentMethodOrder(), cardMethod);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, nameValue), firstNameShip + " " + lastNameShip);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, emailValue), "Email: " + emailShip);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, phoneValue), "Phone: " + phoneShip);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, "address1"), address1Ship);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, "city-state-zip"), cityShip + "," + zipCodeShip);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, countryValue), countryShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "name"), firstNameShip + " " + lastNameShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "email"), "Email: " + emailShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "phone"), "Phone: " + phoneShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "address1"), address1Ship);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "city-state-zip"), cityShip + "," + zipCodeShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "country"), countryShip);
         verifyEquals(userOrderPage.getShippingMethodOrder(), radio2ndDay);
 
         verifyEquals(userOrderPage.getDataTableByValue("sku-number"), skuNumber);
@@ -291,7 +283,7 @@ public class User_08_Payment extends BaseTest {
         verifyEquals(userOrderPage.getDataTableByValue("product-quantity"), totalQuantity);
         verifyEquals(userOrderPage.getDataTableByValue("product-subtotal"), totalPrice);
         verifyEquals(userOrderPage.getGiftWrappingOrder(), giftWrap);
-        verifyEquals(userOrderPage.getPriceBillByLabelName(subTotalPriceLabel), totalPrice);
+        verifyEquals(userOrderPage.getPriceBillByLabelName("Sub-Total:"), totalPrice);
         verifyEquals(userOrderPage.getPriceBillByLabelName("Shipping:"), shipPrice);
         verifyEquals(userOrderPage.getPriceBillByLabelName("Tax:"), taxPrice);
         verifyEquals(userOrderPage.getTotalBillPriceOrder(), totalBillPrice);
@@ -339,19 +331,19 @@ public class User_08_Payment extends BaseTest {
         userCheckoutPage.clickButtonByID("payment-method-buttons-container");
         userCheckoutPage.clickButtonByID("payment-info-buttons-container");
 
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, nameValue), firstNameBill + " " + lastNameBill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, emailValue), "Email: " + emailBill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, phoneValue), "Phone: " + phoneBill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, "address1"), address1Bill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, "city-state-zip"), cityBill + "," + zipCodeBill);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(billingAddress, countryValue), countryBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "name"), firstNameBill + " " + lastNameBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "email"), "Email: " + emailBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "phone"), "Phone: " + phoneBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "address1"), address1Bill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "city-state-zip"), cityBill + "," + zipCodeBill);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Billing Address", "country"), countryBill);
         verifyEquals(userCheckoutPage.getPaymentMethodBilling(), moneyMethod);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, nameValue), firstNameShip + " " + lastNameShip);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, emailValue), "Email: " + emailShip);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, phoneValue), "Phone: " + phoneShip);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, "address1"), address1Ship);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, "city-state-zip"), cityShip + "," + zipCodeShip);
-        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue(shippingAddress, countryValue), countryShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "name"), firstNameShip + " " + lastNameShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "email"), "Email: " + emailShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "phone"), "Phone: " + phoneShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "address1"), address1Ship);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "city-state-zip"), cityShip + "," + zipCodeShip);
+        verifyEquals(userCheckoutPage.getInforCheckoutByNameAndValue("Shipping Address", "country"), countryShip);
         verifyEquals(userCheckoutPage.getShippingMethodShipping(), nextDayAirMethod);
         verifyEquals(userCheckoutPage.getDataTableCheckout("sku-number"), skuNumber);
         verifyEquals(userCheckoutPage.getProductNameCheckout(), appleMacProduct);
@@ -359,7 +351,7 @@ public class User_08_Payment extends BaseTest {
         verifyEquals(userCheckoutPage.getDataTableCheckout("product-quantity"), quantity10);
         verifyEquals(userCheckoutPage.getDataTableCheckout("product-subtotal"), totalBillPrice);
         verifyEquals(userCheckoutPage.getGiftWrappingCheckout(), giftWrap);
-        verifyEquals(userCheckoutPage.getPriceByLabelCheckout(subTotalPriceLabel), totalBillPrice);
+        verifyEquals(userCheckoutPage.getPriceByLabelCheckout("Sub-Total:"), totalBillPrice);
         verifyEquals(userCheckoutPage.getShippingMethodCheckout(), nextDayAirMethod);
         verifyEquals(userCheckoutPage.getPriceByLabelCheckout("Shipping:"), shipPrice);
         verifyEquals(userCheckoutPage.getPriceByLabelCheckout("Tax:"), taxPrice);
@@ -379,19 +371,19 @@ public class User_08_Payment extends BaseTest {
 
         verifyEquals(userOrderPage.getOrderNumberTitle(), orderNumber);
         verifyEquals(userOrderPage.getOrderTotalPrice(), totalBillPrice);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, nameValue), firstNameBill + " " + lastNameBill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, emailValue), "Email: " + emailBill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, phoneValue), "Phone: " + phoneBill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, "address1"), address1Bill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, "city-state-zip"), cityBill + "," + zipCodeBill);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(billingAddress, countryValue), countryBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "name"), firstNameBill + " " + lastNameBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "email"), "Email: " + emailBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "phone"), "Phone: " + phoneBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "address1"), address1Bill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "city-state-zip"), cityBill + "," + zipCodeBill);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Billing Address", "country"), countryBill);
         verifyEquals(userOrderPage.getPaymentMethodOrder(), moneyMethod);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, nameValue), firstNameShip + " " + lastNameShip);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, emailValue), "Email: " + emailShip);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, phoneValue), "Phone: " + phoneShip);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, "address1"), address1Ship);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, "city-state-zip"), cityShip + "," + zipCodeShip);
-        verifyEquals(userOrderPage.getInforOrderByNameAndValue(shippingAddress, countryValue), countryShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "name"), firstNameShip + " " + lastNameShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "email"), "Email: " + emailShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "phone"), "Phone: " + phoneShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "address1"), address1Ship);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "city-state-zip"), cityShip + "," + zipCodeShip);
+        verifyEquals(userOrderPage.getInforOrderByNameAndValue("Shipping Address", "country"), countryShip);
         verifyEquals(userOrderPage.getShippingMethodOrder(), nextDayAirMethod);
 
         verifyEquals(userOrderPage.getDataTableByValue("sku-number"), skuNumber);
@@ -400,7 +392,7 @@ public class User_08_Payment extends BaseTest {
         verifyEquals(userOrderPage.getDataTableByValue("product-quantity"), quantity10);
         verifyEquals(userOrderPage.getDataTableByValue("product-subtotal"), totalBillPrice);
         verifyEquals(userOrderPage.getGiftWrappingOrder(), giftWrap);
-        verifyEquals(userOrderPage.getPriceBillByLabelName(subTotalPriceLabel), totalBillPrice);
+        verifyEquals(userOrderPage.getPriceBillByLabelName("Sub-Total:"), totalBillPrice);
         verifyEquals(userOrderPage.getPriceBillByLabelName("Shipping:"), shipPrice);
         verifyEquals(userOrderPage.getPriceBillByLabelName("Tax:"), taxPrice);
         verifyEquals(userOrderPage.getTotalBillPriceOrder(), totalBillPrice);
@@ -412,13 +404,8 @@ public class User_08_Payment extends BaseTest {
     }
 
     private WebDriver driver;
-    private String radio2ndDay, emailBill, firstNameBill, lastNameBill, countryBill, cityBill, address1Bill,
-            zipCodeBill, phoneBill, emailShip, firstNameShip, lastNameShip, countryShip, cityShip, address1Ship,
-            zipCodeShip, phoneShip, moneyMethod, appleMacProduct, unitPrice, totalPrice,
-            totalQuantity, successCartMess, subTotalPriceLabel, billingAddress,
-            nameValue, emailValue, phoneValue, countryValue, shippingAddress, skuNumber, giftWrap,
-            shippingMethod, shipPrice, taxPrice, totalBillPrice, zip550000, newAddress, radio2ndDayLabel, successOrder,
-            cardCode, orderNumber, cardMethod,  quantity10, nextDayAirMethod;
+    private String radio2ndDay, emailBill, firstNameBill, lastNameBill, countryBill, cityBill, address1Bill, zipCodeBill, phoneBill, emailShip, firstNameShip, lastNameShip, countryShip, cityShip, address1Ship, zipCodeShip, phoneShip, moneyMethod,
+            appleMacProduct, unitPrice, totalPrice, totalQuantity, successCartMess, skuNumber, giftWrap, shippingMethod, shipPrice, taxPrice, totalBillPrice, newAddress, radio2ndDayLabel, successOrder, cardCode, orderNumber, cardMethod,  quantity10, nextDayAirMethod;
     private DataHelper dataFaker;
     private UserHomePageObject userHomePage;
     private UserLoginPageObject userLoginPage;
