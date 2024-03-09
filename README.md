@@ -14,6 +14,8 @@ The project will using Google Chrome by default if no other browser is stated.
 * Install [Git](https://git-scm.com/downloads)
 
 ## :arrow_forward: How to use
+:white_circle: Double click to `RunTestcase.bat` for running testcase (only Windows and Chrome browser)
+
 :white_circle: Using cmd/Git in project dir follow command below:
 * Chrome (default) `mvn clean test`
 * Headless Chrome `mvn clean test -DbrowserName=h_chrome`
